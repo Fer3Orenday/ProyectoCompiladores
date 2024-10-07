@@ -459,39 +459,61 @@ class Main(QMainWindow):
         if element is None:
             return None
 
+        # Definir el texto del item a mostrar en el árbol
         item_text = str(element[0]) if isinstance(element, tuple) else str(element)
-
-        # Consultar la tabla de símbolos para obtener el nombre, tipo y valor
-        if isinstance(element, tuple):
-            # Si es una asignación, mostramos el nombre, tipo y valor de la variable
-            if element[0] == "asignacion":
-                variable_name = element[1]
-                tipo = get_symbol_type(variable_name)
-                valor = next(
-                    (s["valor"] for s in symbol_table if s["name"] == variable_name),
-                    "Sin asignar",
-                )
-                item_text += f" - {variable_name} (tipo: {tipo}, valor: {valor})"
-            else:
-                symbol_info = get_symbol_info(element[1]) if len(element) > 1 else None
-                if symbol_info:
-                    item_text += f" - {symbol_info}"
-
         item = QStandardItem(item_text)
 
-        # Añadir hijos al árbol
         if isinstance(element, tuple):
-            for child in element[1:]:
-                child_item = self.add_items(child)
-                if child_item is not None:
-                    item.appendRow(child_item)
+            # Si es una declaración de variable
+            if element[0] == "declaracion_variable":
+                tipo = element[1]
+                variables = element[2]
+
+                # Para cada variable en la lista de identificadores
+                for variable_name in variables:
+                    # Siempre mostrar tipo: none y valor: none en la declaración inicial
+                    var_item_text = f"{variable_name} (tipo: none, valor: none)"
+                    var_item = QStandardItem(var_item_text)
+                    item.appendRow(var_item)
+
+            # Si es una asignación
+            elif element[0] == "asignacion":
+                variable_name = element[1]
+                valor = element[2]
+                tipo_variable = get_symbol_type(variable_name) or "none"
+
+                # Crear el ítem de la asignación por separado
+                asignacion_item = QStandardItem("asignacion")
+                item.appendRow(asignacion_item)
+
+                # Añadir la variable con tipo y valor en una nueva línea
+                var_item_text = (
+                    f"{variable_name} (tipo: {tipo_variable}, valor: {valor})"
+                )
+                var_item = QStandardItem(var_item_text)
+                asignacion_item.appendRow(var_item)
+
+            # Procesar otros tipos de nodos
+            else:
+                for child in element[1:]:
+                    child_item = self.add_items(child)
+                    if child_item is not None:
+                        item.appendRow(child_item)
+
         elif isinstance(element, list):
-            item = QStandardItem("lista_declaraciones")
+            # Si es una lista de declaraciones
+            item = QStandardItem("lista_declaraciones (tipo: none, valor: none)")
             for subelement in element:
                 subitem = self.add_items(subelement)
                 if subitem is not None:
                     item.appendRow(subitem)
+
         return item
+
+    # Método para manejar la declaración de variables
+    def declare_variable(variable_name, var_type):
+        # Añadir variable a la tabla de símbolos con valor "ninguno"
+        symbol_table.append({"name": variable_name, "tipo": var_type, "valor": "ninguno"})
 
     def apply_format(self, cursor, start, end, color):
         format = QTextCharFormat()
