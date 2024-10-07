@@ -35,6 +35,9 @@ from sint import (
 )
 
 
+from sintAntes import parserr
+
+
 class NoScrollTextEdit(QTextEdit):
     def __init__(self, parent=None):
         super(NoScrollTextEdit, self).__init__(parent)
@@ -55,120 +58,29 @@ class Main(QMainWindow):
         self.setWindowTitle("Compilador")
         self.showMaximized()
 
-        # #self.actionNuevo_archivo.triggered.connect(self.newFile)
-        # #self.actionGuardar.triggered.connect(self.saveFile)
-        # self.guardarbutton.clicked.connect(self.saveFile)
-
-        # #self.actionGuardar_como.triggered.connect(self.saveFileAs)
-        # self.guardarcbutton.clicked.connect(self.saveFileAs)
-
-        # self.actionAbrir_archivo.triggered.connect(self.openFile)
-        # self.actionCerrar_archivo.triggered.connect(self.closeFile)
-        # self.actionDeshacer.triggered.connect(self.undo)
-        # self.actionRehacer.triggered.connect(self.redo)
-        # self.actionCortar.triggered.connect(self.cut)
-        # self.actionCopiar.triggered.connect(self.copy)
-        # self.actionPegar.triggered.connect(self.paste)
-
-        # self.actionNuevoArchivo.triggered.connect(self.newFile)
-        # self.actionGuardar_2.triggered.connect(self.saveFile)
-        # self.actionGuardarComo.triggered.connect(self.saveFileAs)
-        # self.actionAbrirArchivo.triggered.connect(self.openFile)
-        # self.actionCerrarArchivo.triggered.connect(self.closeFile)
-        # self.actionDeshacer_2.triggered.connect(self.undo)
-        # self.actionRehacer_2.triggered.connect(self.redo)
-
-        # self.actionAnalisis_sintactico.triggered.connect(self.sintax_analize)
-        # self.actionCompSintax.triggered.connect(self.sintax_analize)
-        # tree_view = self.tabCompilacion.findChild(QWidget, "tabSintactico").findChild(QTreeView, "txtSintactico")
-        # tree_view.setAlternatingRowColors(True)
-        # tree_view.setStyleSheet("QTreeView { alternate-background-color: #f0f0f0; }")
-        # tree_view.header().setDefaultAlignment(Qt.AlignCenter)
-        # tree_view.header().setStretchLastSection(True)
-        # tree_view.header().setSectionResizeMode(QHeaderView.ResizeToContents)
-
-        # self.listNumeroLinea = NoScrollTextEdit(self.centralwidget)
-        # self.listNumeroLinea.setReadOnly(True)
-        # self.listNumeroLinea.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        # self.listNumeroLinea.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        # self.listNumeroLinea.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Expanding)
-
-        # self.listNumeroLinea.setMinimumWidth(40)
-        # self.listNumeroLinea.setMaximumWidth(40)
-
-        # self.textCodigoFuente.textChanged.connect(self.onTextChanged)
-        # self.textCodigoFuente.cursorPositionChanged.connect(self.onCursorChange)
-
         self.txtErroresLexico = self.findChild(QPlainTextEdit, "txtErroresLexico")
 
-        # self.actionNuevo_archivo.triggered.connect(self.newFile)
-
-        # self.actionGuardar.triggered.connect(self.saveFile)
         self.guardarbutton.clicked.connect(self.saveFile)
 
-        # self.actionGuardar_como.triggered.connect(self.saveFileAs)
         self.guardarcbutton.clicked.connect(self.saveFileAs)
 
-        # self.actionAbrir_archivo.triggered.connect(self.openFile)
         self.abrirbutton.clicked.connect(self.openFile)
 
         self.actionCerrar_archivo.triggered.connect(self.closeFile)
-        # self.actionDeshacer.triggered.connect(self.undo)
-        # self.actionRehacer.triggered.connect(self.redo)
-        # self.actionCortar.triggered.connect(self.cut)
-        # self.actionCopiar.triggered.connect(self.copy)
-        # self.actionPegar.triggered.connect(self.paste)
 
-        # self.actionNuevoArchivo.triggered.connect(self.newFile)
-        # self.actionGuardar_2.triggered.connect(self.saveFile)
-        # self.actionGuardarComo.triggered.connect(self.saveFileAs)
-        # self.actionAbrirArchivo.triggered.connect(self.openFile)
-
-        # self.actionCerrarArchivo.triggered.connect(self.closeFile)
         self.cerrarbutton.clicked.connect(self.closeFile)
-
-        # self.actionDeshacer_2.triggered.connect(self.undo)
-        # self.actionRehacer_2.triggered.connect(self.redo)
 
         self.btnSintactico.clicked.connect(self.sintax_analize)
         self.actionAnalisis_sintactico.triggered.connect(self.sintax_analize)
         self.actionCompSintax.triggered.connect(self.sintax_analize)
 
-        # self.listNumeroLinea_2 = NoScrollTextEdit(self.centralwidget)
-        # self.listNumeroLinea_2.setReadOnly(True)
-        # self.listNumeroLinea_2.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        # self.listNumeroLinea_2.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        # self.listNumeroLinea_2.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Expanding)
-
-        # self.listNumeroLinea_2.setMinimumWidth(20)
-        # self.listNumeroLinea_2.setMaximumWidth(20)
+        self.btnSemantico.clicked.connect(self.sintax_analizesint)
+        self.actionAnalisis_sintactico.triggered.connect(self.sintax_analizesint)
+        self.actionCompSintax.triggered.connect(self.sintax_analizesint)
 
         self.textCodigoFuente_2.textChanged.connect(self.onTextChanged)
         self.textCodigoFuente_2.cursorPositionChanged.connect(self.onCursorChange)
 
-        # layoutPrincipal = QVBoxLayout(self.centralwidget)
-
-        # layoutArriba = QHBoxLayout()
-        # layoutArriba.addWidget(self.listNumeroLinea)
-        # layoutArriba.addWidget(self.textCodigoFuente)
-        # layoutArriba.addWidget(self.tabCompilacion)
-
-        # layoutAbajo = QHBoxLayout()
-        # layoutAbajo.addWidget(self.tabErroresResultado)
-        # self.tabErroresResultado.setMaximumHeight(170)
-
-        # layoutPrincipal.addLayout(layoutArriba)
-        # layoutPrincipal.addLayout(layoutAbajo)
-
-        # self.textCodigoFuente.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
-        # self.textCodigoFuente.verticalScrollBar().valueChanged.connect(self.syncScrollBars)
-        # self.listNumeroLinea.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-
-        # self.set_default_font_size()
-
-        # self.textCodigoFuente.textChanged.connect(self.analyzeText)
-
-        # self.band = 0
         layoutPrincipal = QVBoxLayout(self.centralwidget)
 
         layoutArriba = QHBoxLayout()
@@ -272,14 +184,11 @@ class Main(QMainWindow):
                 if tok.type in self.token_formats:
                     self.apply_format(cursor, start, end, self.token_formats[tok.type])
 
-            # Preparar el HTML de los lexemas encontrados
             html_table = "<table style='border-collapse: collapse;' width='100%'><tr style='color: #1155d4; font-size: 15px'><th style='padding: 8px;'>Tipo</th><th style='padding: 8px;'>Valor</th><th style='padding: 8px;'>Línea</th><th style='padding: 8px;'>Posición</th></tr>"
             for lexeme in lexemes:
                 html_table += f"<tr><td style='text-align: center; padding: 5px; font-weight: bold;'>{lexeme[0]}</td><td style='text-align: center; padding: 5px; font-weight: bold; color: #c4213f;'>{lexeme[1]}</td><td style='text-align: center; padding: 5px;'>{lexeme[2]}</td><td style='text-align: center; padding: 5px;'>{lexeme[3]}</td></tr>"
             html_table += "</table>"
 
-            # Asumiendo que `txtLexico` es el QTextEdit dentro de `tabLexico`
-            # y `tabLexico` es una pestaña dentro de `tabCompilacion`
             scroll_position = (
                 self.tabCompilacion.findChild(QWidget, "tabLexico")
                 .findChild(QTextEdit, "txtLexico")
@@ -363,14 +272,9 @@ class Main(QMainWindow):
             print("ERROR: ", e)
 
     def sintax_analize(self):
-        # Limpiar el QTextEdit de errores antes de analizar
         self.txtErroresSintactico.clear()
-        
 
         text = self.textCodigoFuente_2.toPlainText()
-
-        # Configurar el QTextEdit para errores en el parser
-        # set_error_output(self.txtErroresSintactico)
 
         result = parser.parse(text)
         print(result)
@@ -381,6 +285,41 @@ class Main(QMainWindow):
         self.show_syntax_tree(result)
         self.show_symbol_table()  # Cambiado a no pasar argumentos
 
+    def sintax_analizesint(self):
+        self.txtErroresSintactico.clear()
+
+        text = self.textCodigoFuente_2.toPlainText()
+
+        result = parserr.parserr(text)
+        print(result)
+
+        sintactic_errors = get_sintactic_errors()
+        self.txtErroresSintactico.appendPlainText("\n".join(sintactic_errors))
+
+        self.show_syntax_treeSint(result)
+
+    def show_syntax_treeSint(self, tree):
+        tree_view = self.tabCompilacion.findChild(
+            QWidget, "tabsintacticobien"
+        ).findChild(QTreeView, "txtsintacticobien")
+        model = QStandardItemModel()
+        model.setHorizontalHeaderLabels(["Árbol Sintáctico"])
+
+        root_item = self.add_itemsSint(tree)
+        model.appendRow(root_item)
+
+        tree_view.setModel(model)
+        tree_view.expandAll()
+
+        tree_view.header().setDefaultAlignment(
+            Qt.AlignCenter
+        )  # Alineación centrada de los encabezados
+        tree_view.header().setStretchLastSection(
+            True
+        )  # Extender la última sección para ocupar todo el espacio disponible
+        tree_view.header().setSectionResizeMode(
+            QHeaderView.ResizeToContents
+        )  # Ajustar el tamaño de las secciones según el contenido
 
     def show_syntax_tree(self, tree):
         tree_view = self.tabCompilacion.findChild(QWidget, "tabSintactico").findChild(
@@ -403,15 +342,13 @@ class Main(QMainWindow):
         tree_view.header().setDefaultAlignment(
             Qt.AlignCenter
         )  # Alineación centrada de los encabezados
-        tree_view.header().setStretchLastSection(
-            False
-        ) 
+        tree_view.header().setStretchLastSection(False)
         # Si todavía no tienes scroll horizontal, puedes asegurarte de que el tree view lo permite
         tree_view.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
 
         # Si hay un contenedor para el QTreeView, asegúrate de que también se maneje correctamente
-        tree_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)  
-               
+        tree_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
         # Extender la última sección para ocupar todo el espacio disponible
         tree_view.header().setSectionResizeMode(
             QHeaderView.ResizeToContents
@@ -419,12 +356,14 @@ class Main(QMainWindow):
 
     def show_symbol_table(self):
         # Encuentra el QTreeView en la pestaña de Tabla de Símbolos
-        tabla_simbolos_view = self.tabCompilacion.findChild(QWidget, "tabTablaSimbolos").findChild(
-            QTreeView, "txtTablaSimbolos"
-        )
+        tabla_simbolos_view = self.tabCompilacion.findChild(
+            QWidget, "tabTablaSimbolos"
+        ).findChild(QTreeView, "txtTablaSimbolos")
 
         # Ajustar el tamaño mínimo del QTreeView
-        tabla_simbolos_view.setMinimumWidth(400)  # Ajusta este valor según sea necesario
+        tabla_simbolos_view.setMinimumWidth(
+            400
+        )  # Ajusta este valor según sea necesario
 
         # Limpia el QTreeView antes de mostrar la tabla
         model = QStandardItemModel()
@@ -432,13 +371,17 @@ class Main(QMainWindow):
 
         # Comienza a construir la salida
         for symbol in symbol_table:
-            valor_str = symbol["valor"] if symbol["valor"] is not None else "Sin asignar"
+            valor_str = (
+                symbol["valor"] if symbol["valor"] is not None else "Sin asignar"
+            )
             lineas_str = (
                 ", ".join(map(str, symbol["lineas"])) if symbol["lineas"] else "None"
             )
 
             # Crear un nuevo item para cada símbolo
-            item = QStandardItem(f"Nombre: {symbol['name']}, Tipo: {symbol['tipo']}, Valor: {valor_str}, Lineas: {lineas_str}")
+            item = QStandardItem(
+                f"Nombre: {symbol['name']}, Tipo: {symbol['tipo']}, Valor: {valor_str}, Lineas: {lineas_str}"
+            )
             model.appendRow(item)
 
         # Asigna el modelo al QTreeView
@@ -446,14 +389,21 @@ class Main(QMainWindow):
         tabla_simbolos_view.expandAll()
 
         # Formato adicional para QTreeView
-        tabla_simbolos_view.header().setDefaultAlignment(Qt.AlignCenter)  # Alineación centrada de los encabezados
-        tabla_simbolos_view.header().setStretchLastSection(False)  # No extender la última sección
-        tabla_simbolos_view.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)  # Habilitar scroll horizontal
-        tabla_simbolos_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)  # Expandir el tamaño
+        tabla_simbolos_view.header().setDefaultAlignment(
+            Qt.AlignCenter
+        )  # Alineación centrada de los encabezados
+        tabla_simbolos_view.header().setStretchLastSection(
+            False
+        )  # No extender la última sección
+        tabla_simbolos_view.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarAlwaysOn
+        )  # Habilitar scroll horizontal
+        tabla_simbolos_view.setSizePolicy(
+            QSizePolicy.Expanding, QSizePolicy.Expanding
+        )  # Expandir el tamaño
 
         # Ajustar el tamaño de las secciones según el contenido
         tabla_simbolos_view.header().setSectionResizeMode(QHeaderView.ResizeToContents)
-
 
     def add_items(self, element):
         if element is None:
@@ -491,6 +441,26 @@ class Main(QMainWindow):
                 subitem = self.add_items(subelement)
                 if subitem is not None:
                     item.appendRow(subitem)
+        return item
+
+    def add_itemsSint(self, element):
+        if element is None:  # Si el elemento es None, no lo añadimos al árbol
+            return None
+
+        if isinstance(element, tuple):
+            item = QStandardItem(str(element[0]))
+            for child in element[1:]:
+                child_item = self.add_itemsSint(child)
+                if child_item is not None:  # Solo añadimos el hijo si no es None
+                    item.appendRow(child_item)
+        elif isinstance(element, list):
+            item = QStandardItem("lista_declaraciones")
+            for subelement in element:
+                subitem = self.add_itemsSint(subelement)
+                if subitem is not None:  # Solo añadimos el subelemento si no es None
+                    item.appendRow(subitem)
+        else:
+            item = QStandardItem(str(element))
         return item
 
     def apply_format(self, cursor, start, end, color):
@@ -540,11 +510,19 @@ class Main(QMainWindow):
 
     def openFile(self):
         options = QFileDialog.Options()
-        fileName, _ = QFileDialog.getOpenFileName(self, "Abrir Archivo", "", "Archivos de Texto (*.txt);;Todos los Archivos (*)", options=options)
+        fileName, _ = QFileDialog.getOpenFileName(
+            self,
+            "Abrir Archivo",
+            "",
+            "Archivos de Texto (*.txt);;Todos los Archivos (*)",
+            options=options,
+        )
         if fileName:
-            with open(fileName, 'r') as file:
+            with open(fileName, "r") as file:
                 file_content = file.read()
-                self.textCodigoFuente_2.setPlainText(file_content)  # Usa setPlainText para QPlainTextEdit
+                self.textCodigoFuente_2.setPlainText(
+                    file_content
+                )  # Usa setPlainText para QPlainTextEdit
                 self.current_path = fileName  # Guardar la ruta del archivo actual
 
     def closeFile(self):

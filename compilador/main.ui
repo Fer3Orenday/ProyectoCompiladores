@@ -450,7 +450,7 @@
       <string>Sintáctico</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_5">
+    <widget class="QPushButton" name="btnSemantico">
      <property name="geometry">
       <rect>
        <x>480</x>

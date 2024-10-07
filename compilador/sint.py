@@ -12,7 +12,7 @@ def add_symbol(name, tipo, valor=None, scope="global"):
     symbol = {
         "name": name,
         "tipo": tipo,
-        "valor": valor,  # Valor inicial como None
+        "valor": valor,  # Valor inicial como None yyyyyy
         "scope": scope,
         "lineas": [],  # Lista de líneas donde se usa la variable
     }
@@ -37,6 +37,7 @@ def print_symbol_table():
         print(
             f"Nombre: {symbol['name']}, Tipo: {symbol['tipo']}, Valor: {valor_str}, Lineas: {lineas_str}"
         )
+
 
 def p_programa(p):
     "programa : MAIN LBRACE lista_declaraciones RBRACE"
@@ -364,4 +365,4 @@ def get_symbol_info(name):
     return None
 
 
-parser = yacc.yacc(errorlog=yacc.NullLogger())
+parser = yacc.yacc()
