@@ -25,7 +25,7 @@ import os
 
 from lexer import lexer
 
-from sint import (
+from seman import (
     parser,
     set_error_output,
     get_sintactic_errors,
