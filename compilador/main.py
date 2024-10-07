@@ -34,7 +34,7 @@ from seman import (
     symbol_table,
 )
 
-from sint import parser2, set_error_output, get_sintactic_errors
+from sint import parser2, get_sintactic_errors
 
 
 class NoScrollTextEdit(QTextEdit):
@@ -115,62 +115,15 @@ class Main(QMainWindow):
         self.abrirbutton.clicked.connect(self.openFile)
 
         self.actionCerrar_archivo.triggered.connect(self.closeFile)
-        # self.actionDeshacer.triggered.connect(self.undo)
-        # self.actionRehacer.triggered.connect(self.redo)
-        # self.actionCortar.triggered.connect(self.cut)
-        # self.actionCopiar.triggered.connect(self.copy)
-        # self.actionPegar.triggered.connect(self.paste)
 
-        # self.actionNuevoArchivo.triggered.connect(self.newFile)
-        # self.actionGuardar_2.triggered.connect(self.saveFile)
-        # self.actionGuardarComo.triggered.connect(self.saveFileAs)
-        # self.actionAbrirArchivo.triggered.connect(self.openFile)
-
-        # self.actionCerrarArchivo.triggered.connect(self.closeFile)
         self.cerrarbutton.clicked.connect(self.closeFile)
-
-        # self.actionDeshacer_2.triggered.connect(self.undo)
-        # self.actionRehacer_2.triggered.connect(self.redo)
 
         self.btnSintactico.clicked.connect(self.sintax_analize)
         self.actionAnalisis_sintactico.triggered.connect(self.sintax_analize)
         self.actionCompSintax.triggered.connect(self.sintax_analize)
 
-        # self.listNumeroLinea_2 = NoScrollTextEdit(self.centralwidget)
-        # self.listNumeroLinea_2.setReadOnly(True)
-        # self.listNumeroLinea_2.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        # self.listNumeroLinea_2.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        # self.listNumeroLinea_2.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Expanding)
-
-        # self.listNumeroLinea_2.setMinimumWidth(20)
-        # self.listNumeroLinea_2.setMaximumWidth(20)
-
         self.textCodigoFuente_2.textChanged.connect(self.onTextChanged)
         self.textCodigoFuente_2.cursorPositionChanged.connect(self.onCursorChange)
-
-        # layoutPrincipal = QVBoxLayout(self.centralwidget)
-
-        # layoutArriba = QHBoxLayout()
-        # layoutArriba.addWidget(self.listNumeroLinea)
-        # layoutArriba.addWidget(self.textCodigoFuente)
-        # layoutArriba.addWidget(self.tabCompilacion)
-
-        # layoutAbajo = QHBoxLayout()
-        # layoutAbajo.addWidget(self.tabErroresResultado)
-        # self.tabErroresResultado.setMaximumHeight(170)
-
-        # layoutPrincipal.addLayout(layoutArriba)
-        # layoutPrincipal.addLayout(layoutAbajo)
-
-        # self.textCodigoFuente.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
-        # self.textCodigoFuente.verticalScrollBar().valueChanged.connect(self.syncScrollBars)
-        # self.listNumeroLinea.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-
-        # self.set_default_font_size()
-
-        # self.textCodigoFuente.textChanged.connect(self.analyzeText)
-
-        # self.band = 0
         layoutPrincipal = QVBoxLayout(self.centralwidget)
 
         layoutArriba = QHBoxLayout()
@@ -377,11 +330,14 @@ class Main(QMainWindow):
         result = parser.parse(text)
         print(result)
 
+        result2 = parser2.parse(text)
+        print(result2)
+
         sintactic_errors = get_sintactic_errors()
         self.txtErroresSintactico.appendPlainText("\n".join(sintactic_errors))
 
         self.show_syntax_tree(result)
-        self.show_syntax_treebien(result)
+        self.show_syntax_treebien(result2)
         self.show_symbol_table()  # Cambiado a no pasar argumentos
 
 
