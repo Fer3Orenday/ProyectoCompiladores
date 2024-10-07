@@ -1,0 +1,2618 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CASE
+    LBRACKET
+    NOT
+    PIPE
+    RBRACKET
+    SHAFT
+    SWITCH
+    UNDERSCORE
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> MAIN LBRACE lista_declaraciones RBRACE
+Rule 2     lista_declaraciones -> lista_declaraciones declaracion
+Rule 3     lista_declaraciones -> declaracion
+Rule 4     declaracion -> declaracion_variable
+Rule 5     declaracion -> lista_sentencias
+Rule 6     declaracion -> comentario
+Rule 7     comentario -> COMENTARIO
+Rule 8     declaracion_variable -> tipo identificador SEMICOLON
+Rule 9     identificador -> identificador COMMA IDENTIFICADOR
+Rule 10    identificador -> IDENTIFICADOR
+Rule 11    tipo -> INT
+Rule 12    tipo -> DOUBLE
+Rule 13    tipo -> INTEGER
+Rule 14    tipo -> REAL
+Rule 15    lista_sentencias -> lista_sentencias sentencia
+Rule 16    lista_sentencias -> sentencia
+Rule 17    lista_sentencias -> vacio
+Rule 18    sentencia -> seleccion
+Rule 19    sentencia -> iteracion
+Rule 20    sentencia -> repeticion
+Rule 21    sentencia -> entrada
+Rule 22    sentencia -> salida
+Rule 23    sentencia -> asignacion
+Rule 24    sentencia -> incremento
+Rule 25    sentencia -> decremento
+Rule 26    asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada
+Rule 27    incremento -> IDENTIFICADOR INC SEMICOLON
+Rule 28    decremento -> IDENTIFICADOR DEC SEMICOLON
+Rule 29    p_expresion_finalizada -> expresion SEMICOLON
+Rule 30    p_expresion_finalizada -> SEMICOLON
+Rule 31    seleccion -> IF expresion THEN lista_sentencias END
+Rule 32    seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END
+Rule 33    iteracion -> WHILE expresion DO lista_sentencias END
+Rule 34    repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON
+Rule 35    entrada -> CIN expresion SEMICOLON
+Rule 36    salida -> COUT expresion SEMICOLON
+Rule 37    expresion -> expresion AND expresion
+Rule 38    expresion -> expresion OR expresion
+Rule 39    expresion -> expresion_simple operacion_relacional expresion_simple
+Rule 40    expresion -> expresion_simple
+Rule 41    operacion_relacional -> MORETHAN
+Rule 42    operacion_relacional -> LESSTHAN
+Rule 43    operacion_relacional -> MOREEQUALS
+Rule 44    operacion_relacional -> LESSEQUALS
+Rule 45    operacion_relacional -> EQUALS
+Rule 46    operacion_relacional -> NOTEQUALS
+Rule 47    operacion_relacional -> AND
+Rule 48    operacion_relacional -> OR
+Rule 49    expresion_simple -> expresion_simple primer_operador term
+Rule 50    expresion_simple -> term
+Rule 51    primer_operador -> SUMA
+Rule 52    primer_operador -> RESTA
+Rule 53    term -> term segundo_operador factor
+Rule 54    term -> factor
+Rule 55    segundo_operador -> MULT
+Rule 56    segundo_operador -> DIVIDE
+Rule 57    segundo_operador -> MOD
+Rule 58    factor -> factor tercer_operador componente
+Rule 59    factor -> componente
+Rule 60    tercer_operador -> POT
+Rule 61    componente -> LPARENT expresion RPARENT
+Rule 62    componente -> numero
+Rule 63    componente -> IDENTIFICADOR
+Rule 64    numero -> INT
+Rule 65    numero -> DOUBLE
+Rule 66    numero -> LPARENT RESTA INT RPARENT
+Rule 67    numero -> LPARENT RESTA DOUBLE RPARENT
+Rule 68    vacio -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 37 47
+ASSIGN               : 26
+CASE                 : 
+CIN                  : 35
+COMENTARIO           : 7
+COMMA                : 9
+COUT                 : 36
+DEC                  : 28
+DIVIDE               : 56
+DO                   : 33 34
+DOUBLE               : 12 65 67
+ELSE                 : 32
+END                  : 31 32 33
+EQUALS               : 45
+IDENTIFICADOR        : 9 10 26 27 28 63
+IF                   : 31 32
+INC                  : 27
+INT                  : 11 64 66
+INTEGER              : 13
+LBRACE               : 1
+LBRACKET             : 
+LESSEQUALS           : 44
+LESSTHAN             : 42
+LPARENT              : 61 66 67
+MAIN                 : 1
+MOD                  : 57
+MOREEQUALS           : 43
+MORETHAN             : 41
+MULT                 : 55
+NOT                  : 
+NOTEQUALS            : 46
+OR                   : 38 48
+PIPE                 : 
+POT                  : 60
+RBRACE               : 1
+RBRACKET             : 
+REAL                 : 14
+RESTA                : 52 66 67
+RPARENT              : 61 66 67
+SEMICOLON            : 8 27 28 29 30 34 35 36
+SHAFT                : 
+SUMA                 : 51
+SWITCH               : 
+THEN                 : 31 32
+UNDERSCORE           : 
+UNTIL                : 34
+WHILE                : 33
+error                : 
+
+Nonterminals, with rules where they appear
+
+asignacion           : 23
+comentario           : 6
+componente           : 58 59
+declaracion          : 2 3
+declaracion_variable : 4
+decremento           : 25
+entrada              : 21
+expresion            : 29 31 32 33 34 35 36 37 37 38 38 61
+expresion_simple     : 39 39 40 49
+factor               : 53 54 58
+identificador        : 8 9
+incremento           : 24
+iteracion            : 19
+lista_declaraciones  : 1 2
+lista_sentencias     : 5 15 31 32 32 33 34
+numero               : 62
+operacion_relacional : 39
+p_expresion_finalizada : 26
+primer_operador      : 49
+programa             : 0
+repeticion           : 20
+salida               : 22
+segundo_operador     : 53
+seleccion            : 18
+sentencia            : 15 16
+tercer_operador      : 58
+term                 : 49 50 53
+tipo                 : 8
+vacio                : 17
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . MAIN LBRACE lista_declaraciones RBRACE
+
+    MAIN            shift and go to state 2
+
+    programa                       shift and go to state 1
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> MAIN . LBRACE lista_declaraciones RBRACE
+
+    LBRACE          shift and go to state 3
+
+
+state 3
+
+    (1) programa -> MAIN LBRACE . lista_declaraciones RBRACE
+    (2) lista_declaraciones -> . lista_declaraciones declaracion
+    (3) lista_declaraciones -> . declaracion
+    (4) declaracion -> . declaracion_variable
+    (5) declaracion -> . lista_sentencias
+    (6) declaracion -> . comentario
+    (8) declaracion_variable -> . tipo identificador SEMICOLON
+    (15) lista_sentencias -> . lista_sentencias sentencia
+    (16) lista_sentencias -> . sentencia
+    (17) lista_sentencias -> . vacio
+    (7) comentario -> . COMENTARIO
+    (11) tipo -> . INT
+    (12) tipo -> . DOUBLE
+    (13) tipo -> . INTEGER
+    (14) tipo -> . REAL
+    (18) sentencia -> . seleccion
+    (19) sentencia -> . iteracion
+    (20) sentencia -> . repeticion
+    (21) sentencia -> . entrada
+    (22) sentencia -> . salida
+    (23) sentencia -> . asignacion
+    (24) sentencia -> . incremento
+    (25) sentencia -> . decremento
+    (68) vacio -> .
+    (31) seleccion -> . IF expresion THEN lista_sentencias END
+    (32) seleccion -> . IF expresion THEN lista_sentencias ELSE lista_sentencias END
+    (33) iteracion -> . WHILE expresion DO lista_sentencias END
+    (34) repeticion -> . DO lista_sentencias UNTIL expresion SEMICOLON
+    (35) entrada -> . CIN expresion SEMICOLON
+    (36) salida -> . COUT expresion SEMICOLON
+    (26) asignacion -> . IDENTIFICADOR ASSIGN p_expresion_finalizada
+    (27) incremento -> . IDENTIFICADOR INC SEMICOLON
+    (28) decremento -> . IDENTIFICADOR DEC SEMICOLON
+
+  ! shift/reduce conflict for COMENTARIO resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+  ! shift/reduce conflict for INTEGER resolved as shift
+  ! shift/reduce conflict for REAL resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for CIN resolved as shift
+  ! shift/reduce conflict for COUT resolved as shift
+  ! shift/reduce conflict for IDENTIFICADOR resolved as shift
+    COMENTARIO      shift and go to state 12
+    INT             shift and go to state 13
+    DOUBLE          shift and go to state 14
+    INTEGER         shift and go to state 15
+    REAL            shift and go to state 16
+    RBRACE          reduce using rule 68 (vacio -> .)
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    DO              shift and go to state 27
+    CIN             shift and go to state 28
+    COUT            shift and go to state 29
+    IDENTIFICADOR   shift and go to state 30
+
+  ! IF              [ reduce using rule 68 (vacio -> .) ]
+  ! WHILE           [ reduce using rule 68 (vacio -> .) ]
+  ! DO              [ reduce using rule 68 (vacio -> .) ]
+  ! CIN             [ reduce using rule 68 (vacio -> .) ]
+  ! COUT            [ reduce using rule 68 (vacio -> .) ]
+  ! IDENTIFICADOR   [ reduce using rule 68 (vacio -> .) ]
+  ! COMENTARIO      [ reduce using rule 68 (vacio -> .) ]
+  ! INT             [ reduce using rule 68 (vacio -> .) ]
+  ! DOUBLE          [ reduce using rule 68 (vacio -> .) ]
+  ! INTEGER         [ reduce using rule 68 (vacio -> .) ]
+  ! REAL            [ reduce using rule 68 (vacio -> .) ]
+
+    lista_declaraciones            shift and go to state 4
+    declaracion                    shift and go to state 5
+    declaracion_variable           shift and go to state 6
+    lista_sentencias               shift and go to state 7
+    comentario                     shift and go to state 8
+    tipo                           shift and go to state 9
+    sentencia                      shift and go to state 10
+    vacio                          shift and go to state 11
+    seleccion                      shift and go to state 17
+    iteracion                      shift and go to state 18
+    repeticion                     shift and go to state 19
+    entrada                        shift and go to state 20
+    salida                         shift and go to state 21
+    asignacion                     shift and go to state 22
+    incremento                     shift and go to state 23
+    decremento                     shift and go to state 24
+
+state 4
+
+    (1) programa -> MAIN LBRACE lista_declaraciones . RBRACE
+    (2) lista_declaraciones -> lista_declaraciones . declaracion
+    (4) declaracion -> . declaracion_variable
+    (5) declaracion -> . lista_sentencias
+    (6) declaracion -> . comentario
+    (8) declaracion_variable -> . tipo identificador SEMICOLON
+    (15) lista_sentencias -> . lista_sentencias sentencia
+    (16) lista_sentencias -> . sentencia
+    (17) lista_sentencias -> . vacio
+    (7) comentario -> . COMENTARIO
+    (11) tipo -> . INT
+    (12) tipo -> . DOUBLE
+    (13) tipo -> . INTEGER
+    (14) tipo -> . REAL
+    (18) sentencia -> . seleccion
+    (19) sentencia -> . iteracion
+    (20) sentencia -> . repeticion
+    (21) sentencia -> . entrada
+    (22) sentencia -> . salida
+    (23) sentencia -> . asignacion
+    (24) sentencia -> . incremento
+    (25) sentencia -> . decremento
+    (68) vacio -> .
+    (31) seleccion -> . IF expresion THEN lista_sentencias END
+    (32) seleccion -> . IF expresion THEN lista_sentencias ELSE lista_sentencias END
+    (33) iteracion -> . WHILE expresion DO lista_sentencias END
+    (34) repeticion -> . DO lista_sentencias UNTIL expresion SEMICOLON
+    (35) entrada -> . CIN expresion SEMICOLON
+    (36) salida -> . COUT expresion SEMICOLON
+    (26) asignacion -> . IDENTIFICADOR ASSIGN p_expresion_finalizada
+    (27) incremento -> . IDENTIFICADOR INC SEMICOLON
+    (28) decremento -> . IDENTIFICADOR DEC SEMICOLON
+
+  ! shift/reduce conflict for RBRACE resolved as shift
+  ! shift/reduce conflict for COMENTARIO resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+  ! shift/reduce conflict for INTEGER resolved as shift
+  ! shift/reduce conflict for REAL resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for CIN resolved as shift
+  ! shift/reduce conflict for COUT resolved as shift
+  ! shift/reduce conflict for IDENTIFICADOR resolved as shift
+    RBRACE          shift and go to state 31
+    COMENTARIO      shift and go to state 12
+    INT             shift and go to state 13
+    DOUBLE          shift and go to state 14
+    INTEGER         shift and go to state 15
+    REAL            shift and go to state 16
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    DO              shift and go to state 27
+    CIN             shift and go to state 28
+    COUT            shift and go to state 29
+    IDENTIFICADOR   shift and go to state 30
+
+  ! IF              [ reduce using rule 68 (vacio -> .) ]
+  ! WHILE           [ reduce using rule 68 (vacio -> .) ]
+  ! DO              [ reduce using rule 68 (vacio -> .) ]
+  ! CIN             [ reduce using rule 68 (vacio -> .) ]
+  ! COUT            [ reduce using rule 68 (vacio -> .) ]
+  ! IDENTIFICADOR   [ reduce using rule 68 (vacio -> .) ]
+  ! RBRACE          [ reduce using rule 68 (vacio -> .) ]
+  ! COMENTARIO      [ reduce using rule 68 (vacio -> .) ]
+  ! INT             [ reduce using rule 68 (vacio -> .) ]
+  ! DOUBLE          [ reduce using rule 68 (vacio -> .) ]
+  ! INTEGER         [ reduce using rule 68 (vacio -> .) ]
+  ! REAL            [ reduce using rule 68 (vacio -> .) ]
+
+    declaracion                    shift and go to state 32
+    declaracion_variable           shift and go to state 6
+    lista_sentencias               shift and go to state 7
+    comentario                     shift and go to state 8
+    tipo                           shift and go to state 9
+    sentencia                      shift and go to state 10
+    vacio                          shift and go to state 11
+    seleccion                      shift and go to state 17
+    iteracion                      shift and go to state 18
+    repeticion                     shift and go to state 19
+    entrada                        shift and go to state 20
+    salida                         shift and go to state 21
+    asignacion                     shift and go to state 22
+    incremento                     shift and go to state 23
+    decremento                     shift and go to state 24
+
+state 5
+
+    (3) lista_declaraciones -> declaracion .
+
+    RBRACE          reduce using rule 3 (lista_declaraciones -> declaracion .)
+    COMENTARIO      reduce using rule 3 (lista_declaraciones -> declaracion .)
+    INT             reduce using rule 3 (lista_declaraciones -> declaracion .)
+    DOUBLE          reduce using rule 3 (lista_declaraciones -> declaracion .)
+    INTEGER         reduce using rule 3 (lista_declaraciones -> declaracion .)
+    REAL            reduce using rule 3 (lista_declaraciones -> declaracion .)
+    IF              reduce using rule 3 (lista_declaraciones -> declaracion .)
+    WHILE           reduce using rule 3 (lista_declaraciones -> declaracion .)
+    DO              reduce using rule 3 (lista_declaraciones -> declaracion .)
+    CIN             reduce using rule 3 (lista_declaraciones -> declaracion .)
+    COUT            reduce using rule 3 (lista_declaraciones -> declaracion .)
+    IDENTIFICADOR   reduce using rule 3 (lista_declaraciones -> declaracion .)
+
+
+state 6
+
+    (4) declaracion -> declaracion_variable .
+
+    RBRACE          reduce using rule 4 (declaracion -> declaracion_variable .)
+    COMENTARIO      reduce using rule 4 (declaracion -> declaracion_variable .)
+    INT             reduce using rule 4 (declaracion -> declaracion_variable .)
+    DOUBLE          reduce using rule 4 (declaracion -> declaracion_variable .)
+    INTEGER         reduce using rule 4 (declaracion -> declaracion_variable .)
+    REAL            reduce using rule 4 (declaracion -> declaracion_variable .)
+    IF              reduce using rule 4 (declaracion -> declaracion_variable .)
+    WHILE           reduce using rule 4 (declaracion -> declaracion_variable .)
+    DO              reduce using rule 4 (declaracion -> declaracion_variable .)
+    CIN             reduce using rule 4 (declaracion -> declaracion_variable .)
+    COUT            reduce using rule 4 (declaracion -> declaracion_variable .)
+    IDENTIFICADOR   reduce using rule 4 (declaracion -> declaracion_variable .)
+
+
+state 7
+
+    (5) declaracion -> lista_sentencias .
+    (15) lista_sentencias -> lista_sentencias . sentencia
+    (18) sentencia -> . seleccion
+    (19) sentencia -> . iteracion
+    (20) sentencia -> . repeticion
+    (21) sentencia -> . entrada
+    (22) sentencia -> . salida
+    (23) sentencia -> . asignacion
+    (24) sentencia -> . incremento
+    (25) sentencia -> . decremento
+    (31) seleccion -> . IF expresion THEN lista_sentencias END
+    (32) seleccion -> . IF expresion THEN lista_sentencias ELSE lista_sentencias END
+    (33) iteracion -> . WHILE expresion DO lista_sentencias END
+    (34) repeticion -> . DO lista_sentencias UNTIL expresion SEMICOLON
+    (35) entrada -> . CIN expresion SEMICOLON
+    (36) salida -> . COUT expresion SEMICOLON
+    (26) asignacion -> . IDENTIFICADOR ASSIGN p_expresion_finalizada
+    (27) incremento -> . IDENTIFICADOR INC SEMICOLON
+    (28) decremento -> . IDENTIFICADOR DEC SEMICOLON
+
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for CIN resolved as shift
+  ! shift/reduce conflict for COUT resolved as shift
+  ! shift/reduce conflict for IDENTIFICADOR resolved as shift
+    RBRACE          reduce using rule 5 (declaracion -> lista_sentencias .)
+    COMENTARIO      reduce using rule 5 (declaracion -> lista_sentencias .)
+    INT             reduce using rule 5 (declaracion -> lista_sentencias .)
+    DOUBLE          reduce using rule 5 (declaracion -> lista_sentencias .)
+    INTEGER         reduce using rule 5 (declaracion -> lista_sentencias .)
+    REAL            reduce using rule 5 (declaracion -> lista_sentencias .)
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    DO              shift and go to state 27
+    CIN             shift and go to state 28
+    COUT            shift and go to state 29
+    IDENTIFICADOR   shift and go to state 30
+
+  ! IF              [ reduce using rule 5 (declaracion -> lista_sentencias .) ]
+  ! WHILE           [ reduce using rule 5 (declaracion -> lista_sentencias .) ]
+  ! DO              [ reduce using rule 5 (declaracion -> lista_sentencias .) ]
+  ! CIN             [ reduce using rule 5 (declaracion -> lista_sentencias .) ]
+  ! COUT            [ reduce using rule 5 (declaracion -> lista_sentencias .) ]
+  ! IDENTIFICADOR   [ reduce using rule 5 (declaracion -> lista_sentencias .) ]
+
+    sentencia                      shift and go to state 33
+    seleccion                      shift and go to state 17
+    iteracion                      shift and go to state 18
+    repeticion                     shift and go to state 19
+    entrada                        shift and go to state 20
+    salida                         shift and go to state 21
+    asignacion                     shift and go to state 22
+    incremento                     shift and go to state 23
+    decremento                     shift and go to state 24
+
+state 8
+
+    (6) declaracion -> comentario .
+
+    RBRACE          reduce using rule 6 (declaracion -> comentario .)
+    COMENTARIO      reduce using rule 6 (declaracion -> comentario .)
+    INT             reduce using rule 6 (declaracion -> comentario .)
+    DOUBLE          reduce using rule 6 (declaracion -> comentario .)
+    INTEGER         reduce using rule 6 (declaracion -> comentario .)
+    REAL            reduce using rule 6 (declaracion -> comentario .)
+    IF              reduce using rule 6 (declaracion -> comentario .)
+    WHILE           reduce using rule 6 (declaracion -> comentario .)
+    DO              reduce using rule 6 (declaracion -> comentario .)
+    CIN             reduce using rule 6 (declaracion -> comentario .)
+    COUT            reduce using rule 6 (declaracion -> comentario .)
+    IDENTIFICADOR   reduce using rule 6 (declaracion -> comentario .)
+
+
+state 9
+
+    (8) declaracion_variable -> tipo . identificador SEMICOLON
+    (9) identificador -> . identificador COMMA IDENTIFICADOR
+    (10) identificador -> . IDENTIFICADOR
+
+    IDENTIFICADOR   shift and go to state 35
+
+    identificador                  shift and go to state 34
+
+state 10
+
+    (16) lista_sentencias -> sentencia .
+
+    IF              reduce using rule 16 (lista_sentencias -> sentencia .)
+    WHILE           reduce using rule 16 (lista_sentencias -> sentencia .)
+    DO              reduce using rule 16 (lista_sentencias -> sentencia .)
+    CIN             reduce using rule 16 (lista_sentencias -> sentencia .)
+    COUT            reduce using rule 16 (lista_sentencias -> sentencia .)
+    IDENTIFICADOR   reduce using rule 16 (lista_sentencias -> sentencia .)
+    RBRACE          reduce using rule 16 (lista_sentencias -> sentencia .)
+    COMENTARIO      reduce using rule 16 (lista_sentencias -> sentencia .)
+    INT             reduce using rule 16 (lista_sentencias -> sentencia .)
+    DOUBLE          reduce using rule 16 (lista_sentencias -> sentencia .)
+    INTEGER         reduce using rule 16 (lista_sentencias -> sentencia .)
+    REAL            reduce using rule 16 (lista_sentencias -> sentencia .)
+    UNTIL           reduce using rule 16 (lista_sentencias -> sentencia .)
+    END             reduce using rule 16 (lista_sentencias -> sentencia .)
+    ELSE            reduce using rule 16 (lista_sentencias -> sentencia .)
+
+
+state 11
+
+    (17) lista_sentencias -> vacio .
+
+    IF              reduce using rule 17 (lista_sentencias -> vacio .)
+    WHILE           reduce using rule 17 (lista_sentencias -> vacio .)
+    DO              reduce using rule 17 (lista_sentencias -> vacio .)
+    CIN             reduce using rule 17 (lista_sentencias -> vacio .)
+    COUT            reduce using rule 17 (lista_sentencias -> vacio .)
+    IDENTIFICADOR   reduce using rule 17 (lista_sentencias -> vacio .)
+    RBRACE          reduce using rule 17 (lista_sentencias -> vacio .)
+    COMENTARIO      reduce using rule 17 (lista_sentencias -> vacio .)
+    INT             reduce using rule 17 (lista_sentencias -> vacio .)
+    DOUBLE          reduce using rule 17 (lista_sentencias -> vacio .)
+    INTEGER         reduce using rule 17 (lista_sentencias -> vacio .)
+    REAL            reduce using rule 17 (lista_sentencias -> vacio .)
+    UNTIL           reduce using rule 17 (lista_sentencias -> vacio .)
+    END             reduce using rule 17 (lista_sentencias -> vacio .)
+    ELSE            reduce using rule 17 (lista_sentencias -> vacio .)
+
+
+state 12
+
+    (7) comentario -> COMENTARIO .
+
+    RBRACE          reduce using rule 7 (comentario -> COMENTARIO .)
+    COMENTARIO      reduce using rule 7 (comentario -> COMENTARIO .)
+    INT             reduce using rule 7 (comentario -> COMENTARIO .)
+    DOUBLE          reduce using rule 7 (comentario -> COMENTARIO .)
+    INTEGER         reduce using rule 7 (comentario -> COMENTARIO .)
+    REAL            reduce using rule 7 (comentario -> COMENTARIO .)
+    IF              reduce using rule 7 (comentario -> COMENTARIO .)
+    WHILE           reduce using rule 7 (comentario -> COMENTARIO .)
+    DO              reduce using rule 7 (comentario -> COMENTARIO .)
+    CIN             reduce using rule 7 (comentario -> COMENTARIO .)
+    COUT            reduce using rule 7 (comentario -> COMENTARIO .)
+    IDENTIFICADOR   reduce using rule 7 (comentario -> COMENTARIO .)
+
+
+state 13
+
+    (11) tipo -> INT .
+
+    IDENTIFICADOR   reduce using rule 11 (tipo -> INT .)
+
+
+state 14
+
+    (12) tipo -> DOUBLE .
+
+    IDENTIFICADOR   reduce using rule 12 (tipo -> DOUBLE .)
+
+
+state 15
+
+    (13) tipo -> INTEGER .
+
+    IDENTIFICADOR   reduce using rule 13 (tipo -> INTEGER .)
+
+
+state 16
+
+    (14) tipo -> REAL .
+
+    IDENTIFICADOR   reduce using rule 14 (tipo -> REAL .)
+
+
+state 17
+
+    (18) sentencia -> seleccion .
+
+    IF              reduce using rule 18 (sentencia -> seleccion .)
+    WHILE           reduce using rule 18 (sentencia -> seleccion .)
+    DO              reduce using rule 18 (sentencia -> seleccion .)
+    CIN             reduce using rule 18 (sentencia -> seleccion .)
+    COUT            reduce using rule 18 (sentencia -> seleccion .)
+    IDENTIFICADOR   reduce using rule 18 (sentencia -> seleccion .)
+    RBRACE          reduce using rule 18 (sentencia -> seleccion .)
+    COMENTARIO      reduce using rule 18 (sentencia -> seleccion .)
+    INT             reduce using rule 18 (sentencia -> seleccion .)
+    DOUBLE          reduce using rule 18 (sentencia -> seleccion .)
+    INTEGER         reduce using rule 18 (sentencia -> seleccion .)
+    REAL            reduce using rule 18 (sentencia -> seleccion .)
+    UNTIL           reduce using rule 18 (sentencia -> seleccion .)
+    END             reduce using rule 18 (sentencia -> seleccion .)
+    ELSE            reduce using rule 18 (sentencia -> seleccion .)
+
+
+state 18
+
+    (19) sentencia -> iteracion .
+
+    IF              reduce using rule 19 (sentencia -> iteracion .)
+    WHILE           reduce using rule 19 (sentencia -> iteracion .)
+    DO              reduce using rule 19 (sentencia -> iteracion .)
+    CIN             reduce using rule 19 (sentencia -> iteracion .)
+    COUT            reduce using rule 19 (sentencia -> iteracion .)
+    IDENTIFICADOR   reduce using rule 19 (sentencia -> iteracion .)
+    RBRACE          reduce using rule 19 (sentencia -> iteracion .)
+    COMENTARIO      reduce using rule 19 (sentencia -> iteracion .)
+    INT             reduce using rule 19 (sentencia -> iteracion .)
+    DOUBLE          reduce using rule 19 (sentencia -> iteracion .)
+    INTEGER         reduce using rule 19 (sentencia -> iteracion .)
+    REAL            reduce using rule 19 (sentencia -> iteracion .)
+    UNTIL           reduce using rule 19 (sentencia -> iteracion .)
+    END             reduce using rule 19 (sentencia -> iteracion .)
+    ELSE            reduce using rule 19 (sentencia -> iteracion .)
+
+
+state 19
+
+    (20) sentencia -> repeticion .
+
+    IF              reduce using rule 20 (sentencia -> repeticion .)
+    WHILE           reduce using rule 20 (sentencia -> repeticion .)
+    DO              reduce using rule 20 (sentencia -> repeticion .)
+    CIN             reduce using rule 20 (sentencia -> repeticion .)
+    COUT            reduce using rule 20 (sentencia -> repeticion .)
+    IDENTIFICADOR   reduce using rule 20 (sentencia -> repeticion .)
+    RBRACE          reduce using rule 20 (sentencia -> repeticion .)
+    COMENTARIO      reduce using rule 20 (sentencia -> repeticion .)
+    INT             reduce using rule 20 (sentencia -> repeticion .)
+    DOUBLE          reduce using rule 20 (sentencia -> repeticion .)
+    INTEGER         reduce using rule 20 (sentencia -> repeticion .)
+    REAL            reduce using rule 20 (sentencia -> repeticion .)
+    UNTIL           reduce using rule 20 (sentencia -> repeticion .)
+    END             reduce using rule 20 (sentencia -> repeticion .)
+    ELSE            reduce using rule 20 (sentencia -> repeticion .)
+
+
+state 20
+
+    (21) sentencia -> entrada .
+
+    IF              reduce using rule 21 (sentencia -> entrada .)
+    WHILE           reduce using rule 21 (sentencia -> entrada .)
+    DO              reduce using rule 21 (sentencia -> entrada .)
+    CIN             reduce using rule 21 (sentencia -> entrada .)
+    COUT            reduce using rule 21 (sentencia -> entrada .)
+    IDENTIFICADOR   reduce using rule 21 (sentencia -> entrada .)
+    RBRACE          reduce using rule 21 (sentencia -> entrada .)
+    COMENTARIO      reduce using rule 21 (sentencia -> entrada .)
+    INT             reduce using rule 21 (sentencia -> entrada .)
+    DOUBLE          reduce using rule 21 (sentencia -> entrada .)
+    INTEGER         reduce using rule 21 (sentencia -> entrada .)
+    REAL            reduce using rule 21 (sentencia -> entrada .)
+    UNTIL           reduce using rule 21 (sentencia -> entrada .)
+    END             reduce using rule 21 (sentencia -> entrada .)
+    ELSE            reduce using rule 21 (sentencia -> entrada .)
+
+
+state 21
+
+    (22) sentencia -> salida .
+
+    IF              reduce using rule 22 (sentencia -> salida .)
+    WHILE           reduce using rule 22 (sentencia -> salida .)
+    DO              reduce using rule 22 (sentencia -> salida .)
+    CIN             reduce using rule 22 (sentencia -> salida .)
+    COUT            reduce using rule 22 (sentencia -> salida .)
+    IDENTIFICADOR   reduce using rule 22 (sentencia -> salida .)
+    RBRACE          reduce using rule 22 (sentencia -> salida .)
+    COMENTARIO      reduce using rule 22 (sentencia -> salida .)
+    INT             reduce using rule 22 (sentencia -> salida .)
+    DOUBLE          reduce using rule 22 (sentencia -> salida .)
+    INTEGER         reduce using rule 22 (sentencia -> salida .)
+    REAL            reduce using rule 22 (sentencia -> salida .)
+    UNTIL           reduce using rule 22 (sentencia -> salida .)
+    END             reduce using rule 22 (sentencia -> salida .)
+    ELSE            reduce using rule 22 (sentencia -> salida .)
+
+
+state 22
+
+    (23) sentencia -> asignacion .
+
+    IF              reduce using rule 23 (sentencia -> asignacion .)
+    WHILE           reduce using rule 23 (sentencia -> asignacion .)
+    DO              reduce using rule 23 (sentencia -> asignacion .)
+    CIN             reduce using rule 23 (sentencia -> asignacion .)
+    COUT            reduce using rule 23 (sentencia -> asignacion .)
+    IDENTIFICADOR   reduce using rule 23 (sentencia -> asignacion .)
+    RBRACE          reduce using rule 23 (sentencia -> asignacion .)
+    COMENTARIO      reduce using rule 23 (sentencia -> asignacion .)
+    INT             reduce using rule 23 (sentencia -> asignacion .)
+    DOUBLE          reduce using rule 23 (sentencia -> asignacion .)
+    INTEGER         reduce using rule 23 (sentencia -> asignacion .)
+    REAL            reduce using rule 23 (sentencia -> asignacion .)
+    UNTIL           reduce using rule 23 (sentencia -> asignacion .)
+    END             reduce using rule 23 (sentencia -> asignacion .)
+    ELSE            reduce using rule 23 (sentencia -> asignacion .)
+
+
+state 23
+
+    (24) sentencia -> incremento .
+
+    IF              reduce using rule 24 (sentencia -> incremento .)
+    WHILE           reduce using rule 24 (sentencia -> incremento .)
+    DO              reduce using rule 24 (sentencia -> incremento .)
+    CIN             reduce using rule 24 (sentencia -> incremento .)
+    COUT            reduce using rule 24 (sentencia -> incremento .)
+    IDENTIFICADOR   reduce using rule 24 (sentencia -> incremento .)
+    RBRACE          reduce using rule 24 (sentencia -> incremento .)
+    COMENTARIO      reduce using rule 24 (sentencia -> incremento .)
+    INT             reduce using rule 24 (sentencia -> incremento .)
+    DOUBLE          reduce using rule 24 (sentencia -> incremento .)
+    INTEGER         reduce using rule 24 (sentencia -> incremento .)
+    REAL            reduce using rule 24 (sentencia -> incremento .)
+    UNTIL           reduce using rule 24 (sentencia -> incremento .)
+    END             reduce using rule 24 (sentencia -> incremento .)
+    ELSE            reduce using rule 24 (sentencia -> incremento .)
+
+
+state 24
+
+    (25) sentencia -> decremento .
+
+    IF              reduce using rule 25 (sentencia -> decremento .)
+    WHILE           reduce using rule 25 (sentencia -> decremento .)
+    DO              reduce using rule 25 (sentencia -> decremento .)
+    CIN             reduce using rule 25 (sentencia -> decremento .)
+    COUT            reduce using rule 25 (sentencia -> decremento .)
+    IDENTIFICADOR   reduce using rule 25 (sentencia -> decremento .)
+    RBRACE          reduce using rule 25 (sentencia -> decremento .)
+    COMENTARIO      reduce using rule 25 (sentencia -> decremento .)
+    INT             reduce using rule 25 (sentencia -> decremento .)
+    DOUBLE          reduce using rule 25 (sentencia -> decremento .)
+    INTEGER         reduce using rule 25 (sentencia -> decremento .)
+    REAL            reduce using rule 25 (sentencia -> decremento .)
+    UNTIL           reduce using rule 25 (sentencia -> decremento .)
+    END             reduce using rule 25 (sentencia -> decremento .)
+    ELSE            reduce using rule 25 (sentencia -> decremento .)
+
+
+state 25
+
+    (31) seleccion -> IF . expresion THEN lista_sentencias END
+    (32) seleccion -> IF . expresion THEN lista_sentencias ELSE lista_sentencias END
+    (37) expresion -> . expresion AND expresion
+    (38) expresion -> . expresion OR expresion
+    (39) expresion -> . expresion_simple operacion_relacional expresion_simple
+    (40) expresion -> . expresion_simple
+    (49) expresion_simple -> . expresion_simple primer_operador term
+    (50) expresion_simple -> . term
+    (53) term -> . term segundo_operador factor
+    (54) term -> . factor
+    (58) factor -> . factor tercer_operador componente
+    (59) factor -> . componente
+    (61) componente -> . LPARENT expresion RPARENT
+    (62) componente -> . numero
+    (63) componente -> . IDENTIFICADOR
+    (64) numero -> . INT
+    (65) numero -> . DOUBLE
+    (66) numero -> . LPARENT RESTA INT RPARENT
+    (67) numero -> . LPARENT RESTA DOUBLE RPARENT
+
+    LPARENT         shift and go to state 41
+    IDENTIFICADOR   shift and go to state 43
+    INT             shift and go to state 44
+    DOUBLE          shift and go to state 45
+
+    expresion                      shift and go to state 36
+    expresion_simple               shift and go to state 37
+    term                           shift and go to state 38
+    factor                         shift and go to state 39
+    componente                     shift and go to state 40
+    numero                         shift and go to state 42
+
+state 26
+
+    (33) iteracion -> WHILE . expresion DO lista_sentencias END
+    (37) expresion -> . expresion AND expresion
+    (38) expresion -> . expresion OR expresion
+    (39) expresion -> . expresion_simple operacion_relacional expresion_simple
+    (40) expresion -> . expresion_simple
+    (49) expresion_simple -> . expresion_simple primer_operador term
+    (50) expresion_simple -> . term
+    (53) term -> . term segundo_operador factor
+    (54) term -> . factor
+    (58) factor -> . factor tercer_operador componente
+    (59) factor -> . componente
+    (61) componente -> . LPARENT expresion RPARENT
+    (62) componente -> . numero
+    (63) componente -> . IDENTIFICADOR
+    (64) numero -> . INT
+    (65) numero -> . DOUBLE
+    (66) numero -> . LPARENT RESTA INT RPARENT
+    (67) numero -> . LPARENT RESTA DOUBLE RPARENT
+
+    LPARENT         shift and go to state 41
+    IDENTIFICADOR   shift and go to state 43
+    INT             shift and go to state 44
+    DOUBLE          shift and go to state 45
+
+    expresion                      shift and go to state 46
+    expresion_simple               shift and go to state 37
+    term                           shift and go to state 38
+    factor                         shift and go to state 39
+    componente                     shift and go to state 40
+    numero                         shift and go to state 42
+
+state 27
+
+    (34) repeticion -> DO . lista_sentencias UNTIL expresion SEMICOLON
+    (15) lista_sentencias -> . lista_sentencias sentencia
+    (16) lista_sentencias -> . sentencia
+    (17) lista_sentencias -> . vacio
+    (18) sentencia -> . seleccion
+    (19) sentencia -> . iteracion
+    (20) sentencia -> . repeticion
+    (21) sentencia -> . entrada
+    (22) sentencia -> . salida
+    (23) sentencia -> . asignacion
+    (24) sentencia -> . incremento
+    (25) sentencia -> . decremento
+    (68) vacio -> .
+    (31) seleccion -> . IF expresion THEN lista_sentencias END
+    (32) seleccion -> . IF expresion THEN lista_sentencias ELSE lista_sentencias END
+    (33) iteracion -> . WHILE expresion DO lista_sentencias END
+    (34) repeticion -> . DO lista_sentencias UNTIL expresion SEMICOLON
+    (35) entrada -> . CIN expresion SEMICOLON
+    (36) salida -> . COUT expresion SEMICOLON
+    (26) asignacion -> . IDENTIFICADOR ASSIGN p_expresion_finalizada
+    (27) incremento -> . IDENTIFICADOR INC SEMICOLON
+    (28) decremento -> . IDENTIFICADOR DEC SEMICOLON
+
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for CIN resolved as shift
+  ! shift/reduce conflict for COUT resolved as shift
+  ! shift/reduce conflict for IDENTIFICADOR resolved as shift
+    UNTIL           reduce using rule 68 (vacio -> .)
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    DO              shift and go to state 27
+    CIN             shift and go to state 28
+    COUT            shift and go to state 29
+    IDENTIFICADOR   shift and go to state 30
+
+  ! IF              [ reduce using rule 68 (vacio -> .) ]
+  ! WHILE           [ reduce using rule 68 (vacio -> .) ]
+  ! DO              [ reduce using rule 68 (vacio -> .) ]
+  ! CIN             [ reduce using rule 68 (vacio -> .) ]
+  ! COUT            [ reduce using rule 68 (vacio -> .) ]
+  ! IDENTIFICADOR   [ reduce using rule 68 (vacio -> .) ]
+
+    lista_sentencias               shift and go to state 47
+    sentencia                      shift and go to state 10
+    vacio                          shift and go to state 11
+    seleccion                      shift and go to state 17
+    iteracion                      shift and go to state 18
+    repeticion                     shift and go to state 19
+    entrada                        shift and go to state 20
+    salida                         shift and go to state 21
+    asignacion                     shift and go to state 22
+    incremento                     shift and go to state 23
+    decremento                     shift and go to state 24
+
+state 28
+
+    (35) entrada -> CIN . expresion SEMICOLON
+    (37) expresion -> . expresion AND expresion
+    (38) expresion -> . expresion OR expresion
+    (39) expresion -> . expresion_simple operacion_relacional expresion_simple
+    (40) expresion -> . expresion_simple
+    (49) expresion_simple -> . expresion_simple primer_operador term
+    (50) expresion_simple -> . term
+    (53) term -> . term segundo_operador factor
+    (54) term -> . factor
+    (58) factor -> . factor tercer_operador componente
+    (59) factor -> . componente
+    (61) componente -> . LPARENT expresion RPARENT
+    (62) componente -> . numero
+    (63) componente -> . IDENTIFICADOR
+    (64) numero -> . INT
+    (65) numero -> . DOUBLE
+    (66) numero -> . LPARENT RESTA INT RPARENT
+    (67) numero -> . LPARENT RESTA DOUBLE RPARENT
+
+    LPARENT         shift and go to state 41
+    IDENTIFICADOR   shift and go to state 43
+    INT             shift and go to state 44
+    DOUBLE          shift and go to state 45
+
+    expresion                      shift and go to state 48
+    expresion_simple               shift and go to state 37
+    term                           shift and go to state 38
+    factor                         shift and go to state 39
+    componente                     shift and go to state 40
+    numero                         shift and go to state 42
+
+state 29
+
+    (36) salida -> COUT . expresion SEMICOLON
+    (37) expresion -> . expresion AND expresion
+    (38) expresion -> . expresion OR expresion
+    (39) expresion -> . expresion_simple operacion_relacional expresion_simple
+    (40) expresion -> . expresion_simple
+    (49) expresion_simple -> . expresion_simple primer_operador term
+    (50) expresion_simple -> . term
+    (53) term -> . term segundo_operador factor
+    (54) term -> . factor
+    (58) factor -> . factor tercer_operador componente
+    (59) factor -> . componente
+    (61) componente -> . LPARENT expresion RPARENT
+    (62) componente -> . numero
+    (63) componente -> . IDENTIFICADOR
+    (64) numero -> . INT
+    (65) numero -> . DOUBLE
+    (66) numero -> . LPARENT RESTA INT RPARENT
+    (67) numero -> . LPARENT RESTA DOUBLE RPARENT
+
+    LPARENT         shift and go to state 41
+    IDENTIFICADOR   shift and go to state 43
+    INT             shift and go to state 44
+    DOUBLE          shift and go to state 45
+
+    expresion                      shift and go to state 49
+    expresion_simple               shift and go to state 37
+    term                           shift and go to state 38
+    factor                         shift and go to state 39
+    componente                     shift and go to state 40
+    numero                         shift and go to state 42
+
+state 30
+
+    (26) asignacion -> IDENTIFICADOR . ASSIGN p_expresion_finalizada
+    (27) incremento -> IDENTIFICADOR . INC SEMICOLON
+    (28) decremento -> IDENTIFICADOR . DEC SEMICOLON
+
+    ASSIGN          shift and go to state 50
+    INC             shift and go to state 51
+    DEC             shift and go to state 52
+
+
+state 31
+
+    (1) programa -> MAIN LBRACE lista_declaraciones RBRACE .
+
+    $end            reduce using rule 1 (programa -> MAIN LBRACE lista_declaraciones RBRACE .)
+
+
+state 32
+
+    (2) lista_declaraciones -> lista_declaraciones declaracion .
+
+    RBRACE          reduce using rule 2 (lista_declaraciones -> lista_declaraciones declaracion .)
+    COMENTARIO      reduce using rule 2 (lista_declaraciones -> lista_declaraciones declaracion .)
+    INT             reduce using rule 2 (lista_declaraciones -> lista_declaraciones declaracion .)
+    DOUBLE          reduce using rule 2 (lista_declaraciones -> lista_declaraciones declaracion .)
+    INTEGER         reduce using rule 2 (lista_declaraciones -> lista_declaraciones declaracion .)
+    REAL            reduce using rule 2 (lista_declaraciones -> lista_declaraciones declaracion .)
+    IF              reduce using rule 2 (lista_declaraciones -> lista_declaraciones declaracion .)
+    WHILE           reduce using rule 2 (lista_declaraciones -> lista_declaraciones declaracion .)
+    DO              reduce using rule 2 (lista_declaraciones -> lista_declaraciones declaracion .)
+    CIN             reduce using rule 2 (lista_declaraciones -> lista_declaraciones declaracion .)
+    COUT            reduce using rule 2 (lista_declaraciones -> lista_declaraciones declaracion .)
+    IDENTIFICADOR   reduce using rule 2 (lista_declaraciones -> lista_declaraciones declaracion .)
+
+
+state 33
+
+    (15) lista_sentencias -> lista_sentencias sentencia .
+
+    IF              reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    WHILE           reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    DO              reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    CIN             reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    COUT            reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    IDENTIFICADOR   reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    RBRACE          reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    COMENTARIO      reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    INT             reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    DOUBLE          reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    INTEGER         reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    REAL            reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    UNTIL           reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    END             reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+    ELSE            reduce using rule 15 (lista_sentencias -> lista_sentencias sentencia .)
+
+
+state 34
+
+    (8) declaracion_variable -> tipo identificador . SEMICOLON
+    (9) identificador -> identificador . COMMA IDENTIFICADOR
+
+    SEMICOLON       shift and go to state 53
+    COMMA           shift and go to state 54
+
+
+state 35
+
+    (10) identificador -> IDENTIFICADOR .
+
+    SEMICOLON       reduce using rule 10 (identificador -> IDENTIFICADOR .)
+    COMMA           reduce using rule 10 (identificador -> IDENTIFICADOR .)
+
+
+state 36
+
+    (31) seleccion -> IF expresion . THEN lista_sentencias END
+    (32) seleccion -> IF expresion . THEN lista_sentencias ELSE lista_sentencias END
+    (37) expresion -> expresion . AND expresion
+    (38) expresion -> expresion . OR expresion
+
+    THEN            shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+
+
+state 37
+
+    (39) expresion -> expresion_simple . operacion_relacional expresion_simple
+    (40) expresion -> expresion_simple .
+    (49) expresion_simple -> expresion_simple . primer_operador term
+    (41) operacion_relacional -> . MORETHAN
+    (42) operacion_relacional -> . LESSTHAN
+    (43) operacion_relacional -> . MOREEQUALS
+    (44) operacion_relacional -> . LESSEQUALS
+    (45) operacion_relacional -> . EQUALS
+    (46) operacion_relacional -> . NOTEQUALS
+    (47) operacion_relacional -> . AND
+    (48) operacion_relacional -> . OR
+    (51) primer_operador -> . SUMA
+    (52) primer_operador -> . RESTA
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    THEN            reduce using rule 40 (expresion -> expresion_simple .)
+    DO              reduce using rule 40 (expresion -> expresion_simple .)
+    SEMICOLON       reduce using rule 40 (expresion -> expresion_simple .)
+    RPARENT         reduce using rule 40 (expresion -> expresion_simple .)
+    MORETHAN        shift and go to state 60
+    LESSTHAN        shift and go to state 61
+    MOREEQUALS      shift and go to state 62
+    LESSEQUALS      shift and go to state 63
+    EQUALS          shift and go to state 64
+    NOTEQUALS       shift and go to state 65
+    AND             shift and go to state 66
+    OR              shift and go to state 67
+    SUMA            shift and go to state 68
+    RESTA           shift and go to state 69
+
+  ! AND             [ reduce using rule 40 (expresion -> expresion_simple .) ]
+  ! OR              [ reduce using rule 40 (expresion -> expresion_simple .) ]
+
+    operacion_relacional           shift and go to state 58
+    primer_operador                shift and go to state 59
+
+state 38
+
+    (50) expresion_simple -> term .
+    (53) term -> term . segundo_operador factor
+    (55) segundo_operador -> . MULT
+    (56) segundo_operador -> . DIVIDE
+    (57) segundo_operador -> . MOD
+
+    MORETHAN        reduce using rule 50 (expresion_simple -> term .)
+    LESSTHAN        reduce using rule 50 (expresion_simple -> term .)
+    MOREEQUALS      reduce using rule 50 (expresion_simple -> term .)
+    LESSEQUALS      reduce using rule 50 (expresion_simple -> term .)
+    EQUALS          reduce using rule 50 (expresion_simple -> term .)
+    NOTEQUALS       reduce using rule 50 (expresion_simple -> term .)
+    AND             reduce using rule 50 (expresion_simple -> term .)
+    OR              reduce using rule 50 (expresion_simple -> term .)
+    SUMA            reduce using rule 50 (expresion_simple -> term .)
+    RESTA           reduce using rule 50 (expresion_simple -> term .)
+    THEN            reduce using rule 50 (expresion_simple -> term .)
+    DO              reduce using rule 50 (expresion_simple -> term .)
+    SEMICOLON       reduce using rule 50 (expresion_simple -> term .)
+    RPARENT         reduce using rule 50 (expresion_simple -> term .)
+    MULT            shift and go to state 71
+    DIVIDE          shift and go to state 72
+    MOD             shift and go to state 73
+
+    segundo_operador               shift and go to state 70
+
+state 39
+
+    (54) term -> factor .
+    (58) factor -> factor . tercer_operador componente
+    (60) tercer_operador -> . POT
+
+    MULT            reduce using rule 54 (term -> factor .)
+    DIVIDE          reduce using rule 54 (term -> factor .)
+    MOD             reduce using rule 54 (term -> factor .)
+    MORETHAN        reduce using rule 54 (term -> factor .)
+    LESSTHAN        reduce using rule 54 (term -> factor .)
+    MOREEQUALS      reduce using rule 54 (term -> factor .)
+    LESSEQUALS      reduce using rule 54 (term -> factor .)
+    EQUALS          reduce using rule 54 (term -> factor .)
+    NOTEQUALS       reduce using rule 54 (term -> factor .)
+    AND             reduce using rule 54 (term -> factor .)
+    OR              reduce using rule 54 (term -> factor .)
+    SUMA            reduce using rule 54 (term -> factor .)
+    RESTA           reduce using rule 54 (term -> factor .)
+    THEN            reduce using rule 54 (term -> factor .)
+    DO              reduce using rule 54 (term -> factor .)
+    SEMICOLON       reduce using rule 54 (term -> factor .)
+    RPARENT         reduce using rule 54 (term -> factor .)
+    POT             shift and go to state 75
+
+    tercer_operador                shift and go to state 74
+
+state 40
+
+    (59) factor -> componente .
+
+    POT             reduce using rule 59 (factor -> componente .)
+    MULT            reduce using rule 59 (factor -> componente .)
+    DIVIDE          reduce using rule 59 (factor -> componente .)
+    MOD             reduce using rule 59 (factor -> componente .)
+    MORETHAN        reduce using rule 59 (factor -> componente .)
+    LESSTHAN        reduce using rule 59 (factor -> componente .)
+    MOREEQUALS      reduce using rule 59 (factor -> componente .)
+    LESSEQUALS      reduce using rule 59 (factor -> componente .)
+    EQUALS          reduce using rule 59 (factor -> componente .)
+    NOTEQUALS       reduce using rule 59 (factor -> componente .)
+    AND             reduce using rule 59 (factor -> componente .)
+    OR              reduce using rule 59 (factor -> componente .)
+    SUMA            reduce using rule 59 (factor -> componente .)
+    RESTA           reduce using rule 59 (factor -> componente .)
+    THEN            reduce using rule 59 (factor -> componente .)
+    DO              reduce using rule 59 (factor -> componente .)
+    SEMICOLON       reduce using rule 59 (factor -> componente .)
+    RPARENT         reduce using rule 59 (factor -> componente .)
+
+
+state 41
+
+    (61) componente -> LPARENT . expresion RPARENT
+    (66) numero -> LPARENT . RESTA INT RPARENT
+    (67) numero -> LPARENT . RESTA DOUBLE RPARENT
+    (37) expresion -> . expresion AND expresion
+    (38) expresion -> . expresion OR expresion
+    (39) expresion -> . expresion_simple operacion_relacional expresion_simple
+    (40) expresion -> . expresion_simple
+    (49) expresion_simple -> . expresion_simple primer_operador term
+    (50) expresion_simple -> . term
+    (53) term -> . term segundo_operador factor
+    (54) term -> . factor
+    (58) factor -> . factor tercer_operador componente
+    (59) factor -> . componente
+    (61) componente -> . LPARENT expresion RPARENT
+    (62) componente -> . numero
+    (63) componente -> . IDENTIFICADOR
+    (64) numero -> . INT
+    (65) numero -> . DOUBLE
+    (66) numero -> . LPARENT RESTA INT RPARENT
+    (67) numero -> . LPARENT RESTA DOUBLE RPARENT
+
+    RESTA           shift and go to state 77
+    LPARENT         shift and go to state 41
+    IDENTIFICADOR   shift and go to state 43
+    INT             shift and go to state 44
+    DOUBLE          shift and go to state 45
+
+    expresion                      shift and go to state 76
+    expresion_simple               shift and go to state 37
+    term                           shift and go to state 38
+    factor                         shift and go to state 39
+    componente                     shift and go to state 40
+    numero                         shift and go to state 42
+
+state 42
+
+    (62) componente -> numero .
+
+    POT             reduce using rule 62 (componente -> numero .)
+    MULT            reduce using rule 62 (componente -> numero .)
+    DIVIDE          reduce using rule 62 (componente -> numero .)
+    MOD             reduce using rule 62 (componente -> numero .)
+    MORETHAN        reduce using rule 62 (componente -> numero .)
+    LESSTHAN        reduce using rule 62 (componente -> numero .)
+    MOREEQUALS      reduce using rule 62 (componente -> numero .)
+    LESSEQUALS      reduce using rule 62 (componente -> numero .)
+    EQUALS          reduce using rule 62 (componente -> numero .)
+    NOTEQUALS       reduce using rule 62 (componente -> numero .)
+    AND             reduce using rule 62 (componente -> numero .)
+    OR              reduce using rule 62 (componente -> numero .)
+    SUMA            reduce using rule 62 (componente -> numero .)
+    RESTA           reduce using rule 62 (componente -> numero .)
+    THEN            reduce using rule 62 (componente -> numero .)
+    DO              reduce using rule 62 (componente -> numero .)
+    SEMICOLON       reduce using rule 62 (componente -> numero .)
+    RPARENT         reduce using rule 62 (componente -> numero .)
+
+
+state 43
+
+    (63) componente -> IDENTIFICADOR .
+
+    POT             reduce using rule 63 (componente -> IDENTIFICADOR .)
+    MULT            reduce using rule 63 (componente -> IDENTIFICADOR .)
+    DIVIDE          reduce using rule 63 (componente -> IDENTIFICADOR .)
+    MOD             reduce using rule 63 (componente -> IDENTIFICADOR .)
+    MORETHAN        reduce using rule 63 (componente -> IDENTIFICADOR .)
+    LESSTHAN        reduce using rule 63 (componente -> IDENTIFICADOR .)
+    MOREEQUALS      reduce using rule 63 (componente -> IDENTIFICADOR .)
+    LESSEQUALS      reduce using rule 63 (componente -> IDENTIFICADOR .)
+    EQUALS          reduce using rule 63 (componente -> IDENTIFICADOR .)
+    NOTEQUALS       reduce using rule 63 (componente -> IDENTIFICADOR .)
+    AND             reduce using rule 63 (componente -> IDENTIFICADOR .)
+    OR              reduce using rule 63 (componente -> IDENTIFICADOR .)
+    SUMA            reduce using rule 63 (componente -> IDENTIFICADOR .)
+    RESTA           reduce using rule 63 (componente -> IDENTIFICADOR .)
+    THEN            reduce using rule 63 (componente -> IDENTIFICADOR .)
+    DO              reduce using rule 63 (componente -> IDENTIFICADOR .)
+    SEMICOLON       reduce using rule 63 (componente -> IDENTIFICADOR .)
+    RPARENT         reduce using rule 63 (componente -> IDENTIFICADOR .)
+
+
+state 44
+
+    (64) numero -> INT .
+
+    POT             reduce using rule 64 (numero -> INT .)
+    MULT            reduce using rule 64 (numero -> INT .)
+    DIVIDE          reduce using rule 64 (numero -> INT .)
+    MOD             reduce using rule 64 (numero -> INT .)
+    MORETHAN        reduce using rule 64 (numero -> INT .)
+    LESSTHAN        reduce using rule 64 (numero -> INT .)
+    MOREEQUALS      reduce using rule 64 (numero -> INT .)
+    LESSEQUALS      reduce using rule 64 (numero -> INT .)
+    EQUALS          reduce using rule 64 (numero -> INT .)
+    NOTEQUALS       reduce using rule 64 (numero -> INT .)
+    AND             reduce using rule 64 (numero -> INT .)
+    OR              reduce using rule 64 (numero -> INT .)
+    SUMA            reduce using rule 64 (numero -> INT .)
+    RESTA           reduce using rule 64 (numero -> INT .)
+    THEN            reduce using rule 64 (numero -> INT .)
+    DO              reduce using rule 64 (numero -> INT .)
+    SEMICOLON       reduce using rule 64 (numero -> INT .)
+    RPARENT         reduce using rule 64 (numero -> INT .)
+
+
+state 45
+
+    (65) numero -> DOUBLE .
+
+    POT             reduce using rule 65 (numero -> DOUBLE .)
+    MULT            reduce using rule 65 (numero -> DOUBLE .)
+    DIVIDE          reduce using rule 65 (numero -> DOUBLE .)
+    MOD             reduce using rule 65 (numero -> DOUBLE .)
+    MORETHAN        reduce using rule 65 (numero -> DOUBLE .)
+    LESSTHAN        reduce using rule 65 (numero -> DOUBLE .)
+    MOREEQUALS      reduce using rule 65 (numero -> DOUBLE .)
+    LESSEQUALS      reduce using rule 65 (numero -> DOUBLE .)
+    EQUALS          reduce using rule 65 (numero -> DOUBLE .)
+    NOTEQUALS       reduce using rule 65 (numero -> DOUBLE .)
+    AND             reduce using rule 65 (numero -> DOUBLE .)
+    OR              reduce using rule 65 (numero -> DOUBLE .)
+    SUMA            reduce using rule 65 (numero -> DOUBLE .)
+    RESTA           reduce using rule 65 (numero -> DOUBLE .)
+    THEN            reduce using rule 65 (numero -> DOUBLE .)
+    DO              reduce using rule 65 (numero -> DOUBLE .)
+    SEMICOLON       reduce using rule 65 (numero -> DOUBLE .)
+    RPARENT         reduce using rule 65 (numero -> DOUBLE .)
+
+
+state 46
+
+    (33) iteracion -> WHILE expresion . DO lista_sentencias END
+    (37) expresion -> expresion . AND expresion
+    (38) expresion -> expresion . OR expresion
+
+    DO              shift and go to state 78
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+
+
+state 47
+
+    (34) repeticion -> DO lista_sentencias . UNTIL expresion SEMICOLON
+    (15) lista_sentencias -> lista_sentencias . sentencia
+    (18) sentencia -> . seleccion
+    (19) sentencia -> . iteracion
+    (20) sentencia -> . repeticion
+    (21) sentencia -> . entrada
+    (22) sentencia -> . salida
+    (23) sentencia -> . asignacion
+    (24) sentencia -> . incremento
+    (25) sentencia -> . decremento
+    (31) seleccion -> . IF expresion THEN lista_sentencias END
+    (32) seleccion -> . IF expresion THEN lista_sentencias ELSE lista_sentencias END
+    (33) iteracion -> . WHILE expresion DO lista_sentencias END
+    (34) repeticion -> . DO lista_sentencias UNTIL expresion SEMICOLON
+    (35) entrada -> . CIN expresion SEMICOLON
+    (36) salida -> . COUT expresion SEMICOLON
+    (26) asignacion -> . IDENTIFICADOR ASSIGN p_expresion_finalizada
+    (27) incremento -> . IDENTIFICADOR INC SEMICOLON
+    (28) decremento -> . IDENTIFICADOR DEC SEMICOLON
+
+    UNTIL           shift and go to state 79
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    DO              shift and go to state 27
+    CIN             shift and go to state 28
+    COUT            shift and go to state 29
+    IDENTIFICADOR   shift and go to state 30
+
+    sentencia                      shift and go to state 33
+    seleccion                      shift and go to state 17
+    iteracion                      shift and go to state 18
+    repeticion                     shift and go to state 19
+    entrada                        shift and go to state 20
+    salida                         shift and go to state 21
+    asignacion                     shift and go to state 22
+    incremento                     shift and go to state 23
+    decremento                     shift and go to state 24
+
+state 48
+
+    (35) entrada -> CIN expresion . SEMICOLON
+    (37) expresion -> expresion . AND expresion
+    (38) expresion -> expresion . OR expresion
+
+    SEMICOLON       shift and go to state 80
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+
+
+state 49
+
+    (36) salida -> COUT expresion . SEMICOLON
+    (37) expresion -> expresion . AND expresion
+    (38) expresion -> expresion . OR expresion
+
+    SEMICOLON       shift and go to state 81
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+
+
+state 50
+
+    (26) asignacion -> IDENTIFICADOR ASSIGN . p_expresion_finalizada
+    (29) p_expresion_finalizada -> . expresion SEMICOLON
+    (30) p_expresion_finalizada -> . SEMICOLON
+    (37) expresion -> . expresion AND expresion
+    (38) expresion -> . expresion OR expresion
+    (39) expresion -> . expresion_simple operacion_relacional expresion_simple
+    (40) expresion -> . expresion_simple
+    (49) expresion_simple -> . expresion_simple primer_operador term
+    (50) expresion_simple -> . term
+    (53) term -> . term segundo_operador factor
+    (54) term -> . factor
+    (58) factor -> . factor tercer_operador componente
+    (59) factor -> . componente
+    (61) componente -> . LPARENT expresion RPARENT
+    (62) componente -> . numero
+    (63) componente -> . IDENTIFICADOR
+    (64) numero -> . INT
+    (65) numero -> . DOUBLE
+    (66) numero -> . LPARENT RESTA INT RPARENT
+    (67) numero -> . LPARENT RESTA DOUBLE RPARENT
+
+    SEMICOLON       shift and go to state 84
+    LPARENT         shift and go to state 41
+    IDENTIFICADOR   shift and go to state 43
+    INT             shift and go to state 44
+    DOUBLE          shift and go to state 45
+
+    p_expresion_finalizada         shift and go to state 82
+    expresion                      shift and go to state 83
+    expresion_simple               shift and go to state 37
+    term                           shift and go to state 38
+    factor                         shift and go to state 39
+    componente                     shift and go to state 40
+    numero                         shift and go to state 42
+
+state 51
+
+    (27) incremento -> IDENTIFICADOR INC . SEMICOLON
+
+    SEMICOLON       shift and go to state 85
+
+
+state 52
+
+    (28) decremento -> IDENTIFICADOR DEC . SEMICOLON
+
+    SEMICOLON       shift and go to state 86
+
+
+state 53
+
+    (8) declaracion_variable -> tipo identificador SEMICOLON .
+
+    RBRACE          reduce using rule 8 (declaracion_variable -> tipo identificador SEMICOLON .)
+    COMENTARIO      reduce using rule 8 (declaracion_variable -> tipo identificador SEMICOLON .)
+    INT             reduce using rule 8 (declaracion_variable -> tipo identificador SEMICOLON .)
+    DOUBLE          reduce using rule 8 (declaracion_variable -> tipo identificador SEMICOLON .)
+    INTEGER         reduce using rule 8 (declaracion_variable -> tipo identificador SEMICOLON .)
+    REAL            reduce using rule 8 (declaracion_variable -> tipo identificador SEMICOLON .)
+    IF              reduce using rule 8 (declaracion_variable -> tipo identificador SEMICOLON .)
+    WHILE           reduce using rule 8 (declaracion_variable -> tipo identificador SEMICOLON .)
+    DO              reduce using rule 8 (declaracion_variable -> tipo identificador SEMICOLON .)
+    CIN             reduce using rule 8 (declaracion_variable -> tipo identificador SEMICOLON .)
+    COUT            reduce using rule 8 (declaracion_variable -> tipo identificador SEMICOLON .)
+    IDENTIFICADOR   reduce using rule 8 (declaracion_variable -> tipo identificador SEMICOLON .)
+
+
+state 54
+
+    (9) identificador -> identificador COMMA . IDENTIFICADOR
+
+    IDENTIFICADOR   shift and go to state 87
+
+
+state 55
+
+    (31) seleccion -> IF expresion THEN . lista_sentencias END
+    (32) seleccion -> IF expresion THEN . lista_sentencias ELSE lista_sentencias END
+    (15) lista_sentencias -> . lista_sentencias sentencia
+    (16) lista_sentencias -> . sentencia
+    (17) lista_sentencias -> . vacio
+    (18) sentencia -> . seleccion
+    (19) sentencia -> . iteracion
+    (20) sentencia -> . repeticion
+    (21) sentencia -> . entrada
+    (22) sentencia -> . salida
+    (23) sentencia -> . asignacion
+    (24) sentencia -> . incremento
+    (25) sentencia -> . decremento
+    (68) vacio -> .
+    (31) seleccion -> . IF expresion THEN lista_sentencias END
+    (32) seleccion -> . IF expresion THEN lista_sentencias ELSE lista_sentencias END
+    (33) iteracion -> . WHILE expresion DO lista_sentencias END
+    (34) repeticion -> . DO lista_sentencias UNTIL expresion SEMICOLON
+    (35) entrada -> . CIN expresion SEMICOLON
+    (36) salida -> . COUT expresion SEMICOLON
+    (26) asignacion -> . IDENTIFICADOR ASSIGN p_expresion_finalizada
+    (27) incremento -> . IDENTIFICADOR INC SEMICOLON
+    (28) decremento -> . IDENTIFICADOR DEC SEMICOLON
+
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for CIN resolved as shift
+  ! shift/reduce conflict for COUT resolved as shift
+  ! shift/reduce conflict for IDENTIFICADOR resolved as shift
+    END             reduce using rule 68 (vacio -> .)
+    ELSE            reduce using rule 68 (vacio -> .)
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    DO              shift and go to state 27
+    CIN             shift and go to state 28
+    COUT            shift and go to state 29
+    IDENTIFICADOR   shift and go to state 30
+
+  ! IF              [ reduce using rule 68 (vacio -> .) ]
+  ! WHILE           [ reduce using rule 68 (vacio -> .) ]
+  ! DO              [ reduce using rule 68 (vacio -> .) ]
+  ! CIN             [ reduce using rule 68 (vacio -> .) ]
+  ! COUT            [ reduce using rule 68 (vacio -> .) ]
+  ! IDENTIFICADOR   [ reduce using rule 68 (vacio -> .) ]
+
+    lista_sentencias               shift and go to state 88
+    sentencia                      shift and go to state 10
+    vacio                          shift and go to state 11
+    seleccion                      shift and go to state 17
+    iteracion                      shift and go to state 18
+    repeticion                     shift and go to state 19
+    entrada                        shift and go to state 20
+    salida                         shift and go to state 21
+    asignacion                     shift and go to state 22
+    incremento                     shift and go to state 23
+    decremento                     shift and go to state 24
+
+state 56
+
+    (37) expresion -> expresion AND . expresion
+    (37) expresion -> . expresion AND expresion
+    (38) expresion -> . expresion OR expresion
+    (39) expresion -> . expresion_simple operacion_relacional expresion_simple
+    (40) expresion -> . expresion_simple
+    (49) expresion_simple -> . expresion_simple primer_operador term
+    (50) expresion_simple -> . term
+    (53) term -> . term segundo_operador factor
+    (54) term -> . factor
+    (58) factor -> . factor tercer_operador componente
+    (59) factor -> . componente
+    (61) componente -> . LPARENT expresion RPARENT
+    (62) componente -> . numero
+    (63) componente -> . IDENTIFICADOR
+    (64) numero -> . INT
+    (65) numero -> . DOUBLE
+    (66) numero -> . LPARENT RESTA INT RPARENT
+    (67) numero -> . LPARENT RESTA DOUBLE RPARENT
+
+    LPARENT         shift and go to state 41
+    IDENTIFICADOR   shift and go to state 43
+    INT             shift and go to state 44
+    DOUBLE          shift and go to state 45
+
+    expresion                      shift and go to state 89
+    expresion_simple               shift and go to state 37
+    term                           shift and go to state 38
+    factor                         shift and go to state 39
+    componente                     shift and go to state 40
+    numero                         shift and go to state 42
+
+state 57
+
+    (38) expresion -> expresion OR . expresion
+    (37) expresion -> . expresion AND expresion
+    (38) expresion -> . expresion OR expresion
+    (39) expresion -> . expresion_simple operacion_relacional expresion_simple
+    (40) expresion -> . expresion_simple
+    (49) expresion_simple -> . expresion_simple primer_operador term
+    (50) expresion_simple -> . term
+    (53) term -> . term segundo_operador factor
+    (54) term -> . factor
+    (58) factor -> . factor tercer_operador componente
+    (59) factor -> . componente
+    (61) componente -> . LPARENT expresion RPARENT
+    (62) componente -> . numero
+    (63) componente -> . IDENTIFICADOR
+    (64) numero -> . INT
+    (65) numero -> . DOUBLE
+    (66) numero -> . LPARENT RESTA INT RPARENT
+    (67) numero -> . LPARENT RESTA DOUBLE RPARENT
+
+    LPARENT         shift and go to state 41
+    IDENTIFICADOR   shift and go to state 43
+    INT             shift and go to state 44
+    DOUBLE          shift and go to state 45
+
+    expresion                      shift and go to state 90
+    expresion_simple               shift and go to state 37
+    term                           shift and go to state 38
+    factor                         shift and go to state 39
+    componente                     shift and go to state 40
+    numero                         shift and go to state 42
+
+state 58
+
+    (39) expresion -> expresion_simple operacion_relacional . expresion_simple
+    (49) expresion_simple -> . expresion_simple primer_operador term
+    (50) expresion_simple -> . term
+    (53) term -> . term segundo_operador factor
+    (54) term -> . factor
+    (58) factor -> . factor tercer_operador componente
+    (59) factor -> . componente
+    (61) componente -> . LPARENT expresion RPARENT
+    (62) componente -> . numero
+    (63) componente -> . IDENTIFICADOR
+    (64) numero -> . INT
+    (65) numero -> . DOUBLE
+    (66) numero -> . LPARENT RESTA INT RPARENT
+    (67) numero -> . LPARENT RESTA DOUBLE RPARENT
+
+    LPARENT         shift and go to state 41
+    IDENTIFICADOR   shift and go to state 43
+    INT             shift and go to state 44
+    DOUBLE          shift and go to state 45
+
+    expresion_simple               shift and go to state 91
+    term                           shift and go to state 38
+    factor                         shift and go to state 39
+    componente                     shift and go to state 40
+    numero                         shift and go to state 42
+
+state 59
+
+    (49) expresion_simple -> expresion_simple primer_operador . term
+    (53) term -> . term segundo_operador factor
+    (54) term -> . factor
+    (58) factor -> . factor tercer_operador componente
+    (59) factor -> . componente
+    (61) componente -> . LPARENT expresion RPARENT
+    (62) componente -> . numero
+    (63) componente -> . IDENTIFICADOR
+    (64) numero -> . INT
+    (65) numero -> . DOUBLE
+    (66) numero -> . LPARENT RESTA INT RPARENT
+    (67) numero -> . LPARENT RESTA DOUBLE RPARENT
+
+    LPARENT         shift and go to state 41
+    IDENTIFICADOR   shift and go to state 43
+    INT             shift and go to state 44
+    DOUBLE          shift and go to state 45
+
+    term                           shift and go to state 92
+    factor                         shift and go to state 39
+    componente                     shift and go to state 40
+    numero                         shift and go to state 42
+
+state 60
+
+    (41) operacion_relacional -> MORETHAN .
+
+    LPARENT         reduce using rule 41 (operacion_relacional -> MORETHAN .)
+    IDENTIFICADOR   reduce using rule 41 (operacion_relacional -> MORETHAN .)
+    INT             reduce using rule 41 (operacion_relacional -> MORETHAN .)
+    DOUBLE          reduce using rule 41 (operacion_relacional -> MORETHAN .)
+
+
+state 61
+
+    (42) operacion_relacional -> LESSTHAN .
+
+    LPARENT         reduce using rule 42 (operacion_relacional -> LESSTHAN .)
+    IDENTIFICADOR   reduce using rule 42 (operacion_relacional -> LESSTHAN .)
+    INT             reduce using rule 42 (operacion_relacional -> LESSTHAN .)
+    DOUBLE          reduce using rule 42 (operacion_relacional -> LESSTHAN .)
+
+
+state 62
+
+    (43) operacion_relacional -> MOREEQUALS .
+
+    LPARENT         reduce using rule 43 (operacion_relacional -> MOREEQUALS .)
+    IDENTIFICADOR   reduce using rule 43 (operacion_relacional -> MOREEQUALS .)
+    INT             reduce using rule 43 (operacion_relacional -> MOREEQUALS .)
+    DOUBLE          reduce using rule 43 (operacion_relacional -> MOREEQUALS .)
+
+
+state 63
+
+    (44) operacion_relacional -> LESSEQUALS .
+
+    LPARENT         reduce using rule 44 (operacion_relacional -> LESSEQUALS .)
+    IDENTIFICADOR   reduce using rule 44 (operacion_relacional -> LESSEQUALS .)
+    INT             reduce using rule 44 (operacion_relacional -> LESSEQUALS .)
+    DOUBLE          reduce using rule 44 (operacion_relacional -> LESSEQUALS .)
+
+
+state 64
+
+    (45) operacion_relacional -> EQUALS .
+
+    LPARENT         reduce using rule 45 (operacion_relacional -> EQUALS .)
+    IDENTIFICADOR   reduce using rule 45 (operacion_relacional -> EQUALS .)
+    INT             reduce using rule 45 (operacion_relacional -> EQUALS .)
+    DOUBLE          reduce using rule 45 (operacion_relacional -> EQUALS .)
+
+
+state 65
+
+    (46) operacion_relacional -> NOTEQUALS .
+
+    LPARENT         reduce using rule 46 (operacion_relacional -> NOTEQUALS .)
+    IDENTIFICADOR   reduce using rule 46 (operacion_relacional -> NOTEQUALS .)
+    INT             reduce using rule 46 (operacion_relacional -> NOTEQUALS .)
+    DOUBLE          reduce using rule 46 (operacion_relacional -> NOTEQUALS .)
+
+
+state 66
+
+    (47) operacion_relacional -> AND .
+
+    LPARENT         reduce using rule 47 (operacion_relacional -> AND .)
+    IDENTIFICADOR   reduce using rule 47 (operacion_relacional -> AND .)
+    INT             reduce using rule 47 (operacion_relacional -> AND .)
+    DOUBLE          reduce using rule 47 (operacion_relacional -> AND .)
+
+
+state 67
+
+    (48) operacion_relacional -> OR .
+
+    LPARENT         reduce using rule 48 (operacion_relacional -> OR .)
+    IDENTIFICADOR   reduce using rule 48 (operacion_relacional -> OR .)
+    INT             reduce using rule 48 (operacion_relacional -> OR .)
+    DOUBLE          reduce using rule 48 (operacion_relacional -> OR .)
+
+
+state 68
+
+    (51) primer_operador -> SUMA .
+
+    LPARENT         reduce using rule 51 (primer_operador -> SUMA .)
+    IDENTIFICADOR   reduce using rule 51 (primer_operador -> SUMA .)
+    INT             reduce using rule 51 (primer_operador -> SUMA .)
+    DOUBLE          reduce using rule 51 (primer_operador -> SUMA .)
+
+
+state 69
+
+    (52) primer_operador -> RESTA .
+
+    LPARENT         reduce using rule 52 (primer_operador -> RESTA .)
+    IDENTIFICADOR   reduce using rule 52 (primer_operador -> RESTA .)
+    INT             reduce using rule 52 (primer_operador -> RESTA .)
+    DOUBLE          reduce using rule 52 (primer_operador -> RESTA .)
+
+
+state 70
+
+    (53) term -> term segundo_operador . factor
+    (58) factor -> . factor tercer_operador componente
+    (59) factor -> . componente
+    (61) componente -> . LPARENT expresion RPARENT
+    (62) componente -> . numero
+    (63) componente -> . IDENTIFICADOR
+    (64) numero -> . INT
+    (65) numero -> . DOUBLE
+    (66) numero -> . LPARENT RESTA INT RPARENT
+    (67) numero -> . LPARENT RESTA DOUBLE RPARENT
+
+    LPARENT         shift and go to state 41
+    IDENTIFICADOR   shift and go to state 43
+    INT             shift and go to state 44
+    DOUBLE          shift and go to state 45
+
+    factor                         shift and go to state 93
+    componente                     shift and go to state 40
+    numero                         shift and go to state 42
+
+state 71
+
+    (55) segundo_operador -> MULT .
+
+    LPARENT         reduce using rule 55 (segundo_operador -> MULT .)
+    IDENTIFICADOR   reduce using rule 55 (segundo_operador -> MULT .)
+    INT             reduce using rule 55 (segundo_operador -> MULT .)
+    DOUBLE          reduce using rule 55 (segundo_operador -> MULT .)
+
+
+state 72
+
+    (56) segundo_operador -> DIVIDE .
+
+    LPARENT         reduce using rule 56 (segundo_operador -> DIVIDE .)
+    IDENTIFICADOR   reduce using rule 56 (segundo_operador -> DIVIDE .)
+    INT             reduce using rule 56 (segundo_operador -> DIVIDE .)
+    DOUBLE          reduce using rule 56 (segundo_operador -> DIVIDE .)
+
+
+state 73
+
+    (57) segundo_operador -> MOD .
+
+    LPARENT         reduce using rule 57 (segundo_operador -> MOD .)
+    IDENTIFICADOR   reduce using rule 57 (segundo_operador -> MOD .)
+    INT             reduce using rule 57 (segundo_operador -> MOD .)
+    DOUBLE          reduce using rule 57 (segundo_operador -> MOD .)
+
+
+state 74
+
+    (58) factor -> factor tercer_operador . componente
+    (61) componente -> . LPARENT expresion RPARENT
+    (62) componente -> . numero
+    (63) componente -> . IDENTIFICADOR
+    (64) numero -> . INT
+    (65) numero -> . DOUBLE
+    (66) numero -> . LPARENT RESTA INT RPARENT
+    (67) numero -> . LPARENT RESTA DOUBLE RPARENT
+
+    LPARENT         shift and go to state 41
+    IDENTIFICADOR   shift and go to state 43
+    INT             shift and go to state 44
+    DOUBLE          shift and go to state 45
+
+    componente                     shift and go to state 94
+    numero                         shift and go to state 42
+
+state 75
+
+    (60) tercer_operador -> POT .
+
+    LPARENT         reduce using rule 60 (tercer_operador -> POT .)
+    IDENTIFICADOR   reduce using rule 60 (tercer_operador -> POT .)
+    INT             reduce using rule 60 (tercer_operador -> POT .)
+    DOUBLE          reduce using rule 60 (tercer_operador -> POT .)
+
+
+state 76
+
+    (61) componente -> LPARENT expresion . RPARENT
+    (37) expresion -> expresion . AND expresion
+    (38) expresion -> expresion . OR expresion
+
+    RPARENT         shift and go to state 95
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+
+
+state 77
+
+    (66) numero -> LPARENT RESTA . INT RPARENT
+    (67) numero -> LPARENT RESTA . DOUBLE RPARENT
+
+    INT             shift and go to state 96
+    DOUBLE          shift and go to state 97
+
+
+state 78
+
+    (33) iteracion -> WHILE expresion DO . lista_sentencias END
+    (15) lista_sentencias -> . lista_sentencias sentencia
+    (16) lista_sentencias -> . sentencia
+    (17) lista_sentencias -> . vacio
+    (18) sentencia -> . seleccion
+    (19) sentencia -> . iteracion
+    (20) sentencia -> . repeticion
+    (21) sentencia -> . entrada
+    (22) sentencia -> . salida
+    (23) sentencia -> . asignacion
+    (24) sentencia -> . incremento
+    (25) sentencia -> . decremento
+    (68) vacio -> .
+    (31) seleccion -> . IF expresion THEN lista_sentencias END
+    (32) seleccion -> . IF expresion THEN lista_sentencias ELSE lista_sentencias END
+    (33) iteracion -> . WHILE expresion DO lista_sentencias END
+    (34) repeticion -> . DO lista_sentencias UNTIL expresion SEMICOLON
+    (35) entrada -> . CIN expresion SEMICOLON
+    (36) salida -> . COUT expresion SEMICOLON
+    (26) asignacion -> . IDENTIFICADOR ASSIGN p_expresion_finalizada
+    (27) incremento -> . IDENTIFICADOR INC SEMICOLON
+    (28) decremento -> . IDENTIFICADOR DEC SEMICOLON
+
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for CIN resolved as shift
+  ! shift/reduce conflict for COUT resolved as shift
+  ! shift/reduce conflict for IDENTIFICADOR resolved as shift
+    END             reduce using rule 68 (vacio -> .)
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    DO              shift and go to state 27
+    CIN             shift and go to state 28
+    COUT            shift and go to state 29
+    IDENTIFICADOR   shift and go to state 30
+
+  ! IF              [ reduce using rule 68 (vacio -> .) ]
+  ! WHILE           [ reduce using rule 68 (vacio -> .) ]
+  ! DO              [ reduce using rule 68 (vacio -> .) ]
+  ! CIN             [ reduce using rule 68 (vacio -> .) ]
+  ! COUT            [ reduce using rule 68 (vacio -> .) ]
+  ! IDENTIFICADOR   [ reduce using rule 68 (vacio -> .) ]
+
+    lista_sentencias               shift and go to state 98
+    sentencia                      shift and go to state 10
+    vacio                          shift and go to state 11
+    seleccion                      shift and go to state 17
+    iteracion                      shift and go to state 18
+    repeticion                     shift and go to state 19
+    entrada                        shift and go to state 20
+    salida                         shift and go to state 21
+    asignacion                     shift and go to state 22
+    incremento                     shift and go to state 23
+    decremento                     shift and go to state 24
+
+state 79
+
+    (34) repeticion -> DO lista_sentencias UNTIL . expresion SEMICOLON
+    (37) expresion -> . expresion AND expresion
+    (38) expresion -> . expresion OR expresion
+    (39) expresion -> . expresion_simple operacion_relacional expresion_simple
+    (40) expresion -> . expresion_simple
+    (49) expresion_simple -> . expresion_simple primer_operador term
+    (50) expresion_simple -> . term
+    (53) term -> . term segundo_operador factor
+    (54) term -> . factor
+    (58) factor -> . factor tercer_operador componente
+    (59) factor -> . componente
+    (61) componente -> . LPARENT expresion RPARENT
+    (62) componente -> . numero
+    (63) componente -> . IDENTIFICADOR
+    (64) numero -> . INT
+    (65) numero -> . DOUBLE
+    (66) numero -> . LPARENT RESTA INT RPARENT
+    (67) numero -> . LPARENT RESTA DOUBLE RPARENT
+
+    LPARENT         shift and go to state 41
+    IDENTIFICADOR   shift and go to state 43
+    INT             shift and go to state 44
+    DOUBLE          shift and go to state 45
+
+    expresion                      shift and go to state 99
+    expresion_simple               shift and go to state 37
+    term                           shift and go to state 38
+    factor                         shift and go to state 39
+    componente                     shift and go to state 40
+    numero                         shift and go to state 42
+
+state 80
+
+    (35) entrada -> CIN expresion SEMICOLON .
+
+    IF              reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    WHILE           reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    DO              reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    CIN             reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    COUT            reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    IDENTIFICADOR   reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    RBRACE          reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    COMENTARIO      reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    INT             reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    DOUBLE          reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    INTEGER         reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    REAL            reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    UNTIL           reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    END             reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+    ELSE            reduce using rule 35 (entrada -> CIN expresion SEMICOLON .)
+
+
+state 81
+
+    (36) salida -> COUT expresion SEMICOLON .
+
+    IF              reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    WHILE           reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    DO              reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    CIN             reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    COUT            reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    IDENTIFICADOR   reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    RBRACE          reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    COMENTARIO      reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    INT             reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    DOUBLE          reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    INTEGER         reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    REAL            reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    UNTIL           reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    END             reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+    ELSE            reduce using rule 36 (salida -> COUT expresion SEMICOLON .)
+
+
+state 82
+
+    (26) asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .
+
+    IF              reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    WHILE           reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    DO              reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    CIN             reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    COUT            reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    IDENTIFICADOR   reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    RBRACE          reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    COMENTARIO      reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    INT             reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    DOUBLE          reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    INTEGER         reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    REAL            reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    UNTIL           reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    END             reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+    ELSE            reduce using rule 26 (asignacion -> IDENTIFICADOR ASSIGN p_expresion_finalizada .)
+
+
+state 83
+
+    (29) p_expresion_finalizada -> expresion . SEMICOLON
+    (37) expresion -> expresion . AND expresion
+    (38) expresion -> expresion . OR expresion
+
+    SEMICOLON       shift and go to state 100
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+
+
+state 84
+
+    (30) p_expresion_finalizada -> SEMICOLON .
+
+    IF              reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    WHILE           reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    DO              reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    CIN             reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    COUT            reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    IDENTIFICADOR   reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    RBRACE          reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    COMENTARIO      reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    INT             reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    DOUBLE          reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    INTEGER         reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    REAL            reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    UNTIL           reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    END             reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+    ELSE            reduce using rule 30 (p_expresion_finalizada -> SEMICOLON .)
+
+
+state 85
+
+    (27) incremento -> IDENTIFICADOR INC SEMICOLON .
+
+    IF              reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    WHILE           reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    DO              reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    CIN             reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    COUT            reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    IDENTIFICADOR   reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    RBRACE          reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    COMENTARIO      reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    INT             reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    DOUBLE          reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    INTEGER         reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    REAL            reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    UNTIL           reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    END             reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+    ELSE            reduce using rule 27 (incremento -> IDENTIFICADOR INC SEMICOLON .)
+
+
+state 86
+
+    (28) decremento -> IDENTIFICADOR DEC SEMICOLON .
+
+    IF              reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    WHILE           reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    DO              reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    CIN             reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    COUT            reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    IDENTIFICADOR   reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    RBRACE          reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    COMENTARIO      reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    INT             reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    DOUBLE          reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    INTEGER         reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    REAL            reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    UNTIL           reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    END             reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+    ELSE            reduce using rule 28 (decremento -> IDENTIFICADOR DEC SEMICOLON .)
+
+
+state 87
+
+    (9) identificador -> identificador COMMA IDENTIFICADOR .
+
+    SEMICOLON       reduce using rule 9 (identificador -> identificador COMMA IDENTIFICADOR .)
+    COMMA           reduce using rule 9 (identificador -> identificador COMMA IDENTIFICADOR .)
+
+
+state 88
+
+    (31) seleccion -> IF expresion THEN lista_sentencias . END
+    (32) seleccion -> IF expresion THEN lista_sentencias . ELSE lista_sentencias END
+    (15) lista_sentencias -> lista_sentencias . sentencia
+    (18) sentencia -> . seleccion
+    (19) sentencia -> . iteracion
+    (20) sentencia -> . repeticion
+    (21) sentencia -> . entrada
+    (22) sentencia -> . salida
+    (23) sentencia -> . asignacion
+    (24) sentencia -> . incremento
+    (25) sentencia -> . decremento
+    (31) seleccion -> . IF expresion THEN lista_sentencias END
+    (32) seleccion -> . IF expresion THEN lista_sentencias ELSE lista_sentencias END
+    (33) iteracion -> . WHILE expresion DO lista_sentencias END
+    (34) repeticion -> . DO lista_sentencias UNTIL expresion SEMICOLON
+    (35) entrada -> . CIN expresion SEMICOLON
+    (36) salida -> . COUT expresion SEMICOLON
+    (26) asignacion -> . IDENTIFICADOR ASSIGN p_expresion_finalizada
+    (27) incremento -> . IDENTIFICADOR INC SEMICOLON
+    (28) decremento -> . IDENTIFICADOR DEC SEMICOLON
+
+    END             shift and go to state 101
+    ELSE            shift and go to state 102
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    DO              shift and go to state 27
+    CIN             shift and go to state 28
+    COUT            shift and go to state 29
+    IDENTIFICADOR   shift and go to state 30
+
+    sentencia                      shift and go to state 33
+    seleccion                      shift and go to state 17
+    iteracion                      shift and go to state 18
+    repeticion                     shift and go to state 19
+    entrada                        shift and go to state 20
+    salida                         shift and go to state 21
+    asignacion                     shift and go to state 22
+    incremento                     shift and go to state 23
+    decremento                     shift and go to state 24
+
+state 89
+
+    (37) expresion -> expresion AND expresion .
+    (37) expresion -> expresion . AND expresion
+    (38) expresion -> expresion . OR expresion
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    THEN            reduce using rule 37 (expresion -> expresion AND expresion .)
+    DO              reduce using rule 37 (expresion -> expresion AND expresion .)
+    SEMICOLON       reduce using rule 37 (expresion -> expresion AND expresion .)
+    RPARENT         reduce using rule 37 (expresion -> expresion AND expresion .)
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+
+  ! AND             [ reduce using rule 37 (expresion -> expresion AND expresion .) ]
+  ! OR              [ reduce using rule 37 (expresion -> expresion AND expresion .) ]
+
+
+state 90
+
+    (38) expresion -> expresion OR expresion .
+    (37) expresion -> expresion . AND expresion
+    (38) expresion -> expresion . OR expresion
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    THEN            reduce using rule 38 (expresion -> expresion OR expresion .)
+    DO              reduce using rule 38 (expresion -> expresion OR expresion .)
+    SEMICOLON       reduce using rule 38 (expresion -> expresion OR expresion .)
+    RPARENT         reduce using rule 38 (expresion -> expresion OR expresion .)
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+
+  ! AND             [ reduce using rule 38 (expresion -> expresion OR expresion .) ]
+  ! OR              [ reduce using rule 38 (expresion -> expresion OR expresion .) ]
+
+
+state 91
+
+    (39) expresion -> expresion_simple operacion_relacional expresion_simple .
+    (49) expresion_simple -> expresion_simple . primer_operador term
+    (51) primer_operador -> . SUMA
+    (52) primer_operador -> . RESTA
+
+    THEN            reduce using rule 39 (expresion -> expresion_simple operacion_relacional expresion_simple .)
+    AND             reduce using rule 39 (expresion -> expresion_simple operacion_relacional expresion_simple .)
+    OR              reduce using rule 39 (expresion -> expresion_simple operacion_relacional expresion_simple .)
+    DO              reduce using rule 39 (expresion -> expresion_simple operacion_relacional expresion_simple .)
+    SEMICOLON       reduce using rule 39 (expresion -> expresion_simple operacion_relacional expresion_simple .)
+    RPARENT         reduce using rule 39 (expresion -> expresion_simple operacion_relacional expresion_simple .)
+    SUMA            shift and go to state 68
+    RESTA           shift and go to state 69
+
+    primer_operador                shift and go to state 59
+
+state 92
+
+    (49) expresion_simple -> expresion_simple primer_operador term .
+    (53) term -> term . segundo_operador factor
+    (55) segundo_operador -> . MULT
+    (56) segundo_operador -> . DIVIDE
+    (57) segundo_operador -> . MOD
+
+    MORETHAN        reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    LESSTHAN        reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    MOREEQUALS      reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    LESSEQUALS      reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    EQUALS          reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    NOTEQUALS       reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    AND             reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    OR              reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    SUMA            reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    RESTA           reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    THEN            reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    DO              reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    SEMICOLON       reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    RPARENT         reduce using rule 49 (expresion_simple -> expresion_simple primer_operador term .)
+    MULT            shift and go to state 71
+    DIVIDE          shift and go to state 72
+    MOD             shift and go to state 73
+
+    segundo_operador               shift and go to state 70
+
+state 93
+
+    (53) term -> term segundo_operador factor .
+    (58) factor -> factor . tercer_operador componente
+    (60) tercer_operador -> . POT
+
+    MULT            reduce using rule 53 (term -> term segundo_operador factor .)
+    DIVIDE          reduce using rule 53 (term -> term segundo_operador factor .)
+    MOD             reduce using rule 53 (term -> term segundo_operador factor .)
+    MORETHAN        reduce using rule 53 (term -> term segundo_operador factor .)
+    LESSTHAN        reduce using rule 53 (term -> term segundo_operador factor .)
+    MOREEQUALS      reduce using rule 53 (term -> term segundo_operador factor .)
+    LESSEQUALS      reduce using rule 53 (term -> term segundo_operador factor .)
+    EQUALS          reduce using rule 53 (term -> term segundo_operador factor .)
+    NOTEQUALS       reduce using rule 53 (term -> term segundo_operador factor .)
+    AND             reduce using rule 53 (term -> term segundo_operador factor .)
+    OR              reduce using rule 53 (term -> term segundo_operador factor .)
+    SUMA            reduce using rule 53 (term -> term segundo_operador factor .)
+    RESTA           reduce using rule 53 (term -> term segundo_operador factor .)
+    THEN            reduce using rule 53 (term -> term segundo_operador factor .)
+    DO              reduce using rule 53 (term -> term segundo_operador factor .)
+    SEMICOLON       reduce using rule 53 (term -> term segundo_operador factor .)
+    RPARENT         reduce using rule 53 (term -> term segundo_operador factor .)
+    POT             shift and go to state 75
+
+    tercer_operador                shift and go to state 74
+
+state 94
+
+    (58) factor -> factor tercer_operador componente .
+
+    POT             reduce using rule 58 (factor -> factor tercer_operador componente .)
+    MULT            reduce using rule 58 (factor -> factor tercer_operador componente .)
+    DIVIDE          reduce using rule 58 (factor -> factor tercer_operador componente .)
+    MOD             reduce using rule 58 (factor -> factor tercer_operador componente .)
+    MORETHAN        reduce using rule 58 (factor -> factor tercer_operador componente .)
+    LESSTHAN        reduce using rule 58 (factor -> factor tercer_operador componente .)
+    MOREEQUALS      reduce using rule 58 (factor -> factor tercer_operador componente .)
+    LESSEQUALS      reduce using rule 58 (factor -> factor tercer_operador componente .)
+    EQUALS          reduce using rule 58 (factor -> factor tercer_operador componente .)
+    NOTEQUALS       reduce using rule 58 (factor -> factor tercer_operador componente .)
+    AND             reduce using rule 58 (factor -> factor tercer_operador componente .)
+    OR              reduce using rule 58 (factor -> factor tercer_operador componente .)
+    SUMA            reduce using rule 58 (factor -> factor tercer_operador componente .)
+    RESTA           reduce using rule 58 (factor -> factor tercer_operador componente .)
+    THEN            reduce using rule 58 (factor -> factor tercer_operador componente .)
+    DO              reduce using rule 58 (factor -> factor tercer_operador componente .)
+    SEMICOLON       reduce using rule 58 (factor -> factor tercer_operador componente .)
+    RPARENT         reduce using rule 58 (factor -> factor tercer_operador componente .)
+
+
+state 95
+
+    (61) componente -> LPARENT expresion RPARENT .
+
+    POT             reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    MULT            reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    DIVIDE          reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    MOD             reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    MORETHAN        reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    LESSTHAN        reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    MOREEQUALS      reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    LESSEQUALS      reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    EQUALS          reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    NOTEQUALS       reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    AND             reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    OR              reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    SUMA            reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    RESTA           reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    THEN            reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    DO              reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    SEMICOLON       reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+    RPARENT         reduce using rule 61 (componente -> LPARENT expresion RPARENT .)
+
+
+state 96
+
+    (66) numero -> LPARENT RESTA INT . RPARENT
+
+    RPARENT         shift and go to state 103
+
+
+state 97
+
+    (67) numero -> LPARENT RESTA DOUBLE . RPARENT
+
+    RPARENT         shift and go to state 104
+
+
+state 98
+
+    (33) iteracion -> WHILE expresion DO lista_sentencias . END
+    (15) lista_sentencias -> lista_sentencias . sentencia
+    (18) sentencia -> . seleccion
+    (19) sentencia -> . iteracion
+    (20) sentencia -> . repeticion
+    (21) sentencia -> . entrada
+    (22) sentencia -> . salida
+    (23) sentencia -> . asignacion
+    (24) sentencia -> . incremento
+    (25) sentencia -> . decremento
+    (31) seleccion -> . IF expresion THEN lista_sentencias END
+    (32) seleccion -> . IF expresion THEN lista_sentencias ELSE lista_sentencias END
+    (33) iteracion -> . WHILE expresion DO lista_sentencias END
+    (34) repeticion -> . DO lista_sentencias UNTIL expresion SEMICOLON
+    (35) entrada -> . CIN expresion SEMICOLON
+    (36) salida -> . COUT expresion SEMICOLON
+    (26) asignacion -> . IDENTIFICADOR ASSIGN p_expresion_finalizada
+    (27) incremento -> . IDENTIFICADOR INC SEMICOLON
+    (28) decremento -> . IDENTIFICADOR DEC SEMICOLON
+
+    END             shift and go to state 105
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    DO              shift and go to state 27
+    CIN             shift and go to state 28
+    COUT            shift and go to state 29
+    IDENTIFICADOR   shift and go to state 30
+
+    sentencia                      shift and go to state 33
+    seleccion                      shift and go to state 17
+    iteracion                      shift and go to state 18
+    repeticion                     shift and go to state 19
+    entrada                        shift and go to state 20
+    salida                         shift and go to state 21
+    asignacion                     shift and go to state 22
+    incremento                     shift and go to state 23
+    decremento                     shift and go to state 24
+
+state 99
+
+    (34) repeticion -> DO lista_sentencias UNTIL expresion . SEMICOLON
+    (37) expresion -> expresion . AND expresion
+    (38) expresion -> expresion . OR expresion
+
+    SEMICOLON       shift and go to state 106
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+
+
+state 100
+
+    (29) p_expresion_finalizada -> expresion SEMICOLON .
+
+    IF              reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    WHILE           reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    DO              reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    CIN             reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    COUT            reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    IDENTIFICADOR   reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    RBRACE          reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    COMENTARIO      reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    INT             reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    DOUBLE          reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    INTEGER         reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    REAL            reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    UNTIL           reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    END             reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+    ELSE            reduce using rule 29 (p_expresion_finalizada -> expresion SEMICOLON .)
+
+
+state 101
+
+    (31) seleccion -> IF expresion THEN lista_sentencias END .
+
+    IF              reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    WHILE           reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    DO              reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    CIN             reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    COUT            reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    IDENTIFICADOR   reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    RBRACE          reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    COMENTARIO      reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    INT             reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    DOUBLE          reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    INTEGER         reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    REAL            reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    UNTIL           reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    END             reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+    ELSE            reduce using rule 31 (seleccion -> IF expresion THEN lista_sentencias END .)
+
+
+state 102
+
+    (32) seleccion -> IF expresion THEN lista_sentencias ELSE . lista_sentencias END
+    (15) lista_sentencias -> . lista_sentencias sentencia
+    (16) lista_sentencias -> . sentencia
+    (17) lista_sentencias -> . vacio
+    (18) sentencia -> . seleccion
+    (19) sentencia -> . iteracion
+    (20) sentencia -> . repeticion
+    (21) sentencia -> . entrada
+    (22) sentencia -> . salida
+    (23) sentencia -> . asignacion
+    (24) sentencia -> . incremento
+    (25) sentencia -> . decremento
+    (68) vacio -> .
+    (31) seleccion -> . IF expresion THEN lista_sentencias END
+    (32) seleccion -> . IF expresion THEN lista_sentencias ELSE lista_sentencias END
+    (33) iteracion -> . WHILE expresion DO lista_sentencias END
+    (34) repeticion -> . DO lista_sentencias UNTIL expresion SEMICOLON
+    (35) entrada -> . CIN expresion SEMICOLON
+    (36) salida -> . COUT expresion SEMICOLON
+    (26) asignacion -> . IDENTIFICADOR ASSIGN p_expresion_finalizada
+    (27) incremento -> . IDENTIFICADOR INC SEMICOLON
+    (28) decremento -> . IDENTIFICADOR DEC SEMICOLON
+
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for CIN resolved as shift
+  ! shift/reduce conflict for COUT resolved as shift
+  ! shift/reduce conflict for IDENTIFICADOR resolved as shift
+    END             reduce using rule 68 (vacio -> .)
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    DO              shift and go to state 27
+    CIN             shift and go to state 28
+    COUT            shift and go to state 29
+    IDENTIFICADOR   shift and go to state 30
+
+  ! IF              [ reduce using rule 68 (vacio -> .) ]
+  ! WHILE           [ reduce using rule 68 (vacio -> .) ]
+  ! DO              [ reduce using rule 68 (vacio -> .) ]
+  ! CIN             [ reduce using rule 68 (vacio -> .) ]
+  ! COUT            [ reduce using rule 68 (vacio -> .) ]
+  ! IDENTIFICADOR   [ reduce using rule 68 (vacio -> .) ]
+
+    lista_sentencias               shift and go to state 107
+    sentencia                      shift and go to state 10
+    vacio                          shift and go to state 11
+    seleccion                      shift and go to state 17
+    iteracion                      shift and go to state 18
+    repeticion                     shift and go to state 19
+    entrada                        shift and go to state 20
+    salida                         shift and go to state 21
+    asignacion                     shift and go to state 22
+    incremento                     shift and go to state 23
+    decremento                     shift and go to state 24
+
+state 103
+
+    (66) numero -> LPARENT RESTA INT RPARENT .
+
+    POT             reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    MULT            reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    DIVIDE          reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    MOD             reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    MORETHAN        reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    LESSTHAN        reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    MOREEQUALS      reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    LESSEQUALS      reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    EQUALS          reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    NOTEQUALS       reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    AND             reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    OR              reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    SUMA            reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    RESTA           reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    THEN            reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    DO              reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    SEMICOLON       reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+    RPARENT         reduce using rule 66 (numero -> LPARENT RESTA INT RPARENT .)
+
+
+state 104
+
+    (67) numero -> LPARENT RESTA DOUBLE RPARENT .
+
+    POT             reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    MULT            reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    DIVIDE          reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    MOD             reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    MORETHAN        reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    LESSTHAN        reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    MOREEQUALS      reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    LESSEQUALS      reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    EQUALS          reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    NOTEQUALS       reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    AND             reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    OR              reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    SUMA            reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    RESTA           reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    THEN            reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    DO              reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    SEMICOLON       reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+    RPARENT         reduce using rule 67 (numero -> LPARENT RESTA DOUBLE RPARENT .)
+
+
+state 105
+
+    (33) iteracion -> WHILE expresion DO lista_sentencias END .
+
+    IF              reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    WHILE           reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    DO              reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    CIN             reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    COUT            reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    IDENTIFICADOR   reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    RBRACE          reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    COMENTARIO      reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    INT             reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    DOUBLE          reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    INTEGER         reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    REAL            reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    UNTIL           reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    END             reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+    ELSE            reduce using rule 33 (iteracion -> WHILE expresion DO lista_sentencias END .)
+
+
+state 106
+
+    (34) repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .
+
+    IF              reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    WHILE           reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    DO              reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    CIN             reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    COUT            reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    IDENTIFICADOR   reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    RBRACE          reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    COMENTARIO      reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    INT             reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    DOUBLE          reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    INTEGER         reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    REAL            reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    UNTIL           reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    END             reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+    ELSE            reduce using rule 34 (repeticion -> DO lista_sentencias UNTIL expresion SEMICOLON .)
+
+
+state 107
+
+    (32) seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias . END
+    (15) lista_sentencias -> lista_sentencias . sentencia
+    (18) sentencia -> . seleccion
+    (19) sentencia -> . iteracion
+    (20) sentencia -> . repeticion
+    (21) sentencia -> . entrada
+    (22) sentencia -> . salida
+    (23) sentencia -> . asignacion
+    (24) sentencia -> . incremento
+    (25) sentencia -> . decremento
+    (31) seleccion -> . IF expresion THEN lista_sentencias END
+    (32) seleccion -> . IF expresion THEN lista_sentencias ELSE lista_sentencias END
+    (33) iteracion -> . WHILE expresion DO lista_sentencias END
+    (34) repeticion -> . DO lista_sentencias UNTIL expresion SEMICOLON
+    (35) entrada -> . CIN expresion SEMICOLON
+    (36) salida -> . COUT expresion SEMICOLON
+    (26) asignacion -> . IDENTIFICADOR ASSIGN p_expresion_finalizada
+    (27) incremento -> . IDENTIFICADOR INC SEMICOLON
+    (28) decremento -> . IDENTIFICADOR DEC SEMICOLON
+
+    END             shift and go to state 108
+    IF              shift and go to state 25
+    WHILE           shift and go to state 26
+    DO              shift and go to state 27
+    CIN             shift and go to state 28
+    COUT            shift and go to state 29
+    IDENTIFICADOR   shift and go to state 30
+
+    sentencia                      shift and go to state 33
+    seleccion                      shift and go to state 17
+    iteracion                      shift and go to state 18
+    repeticion                     shift and go to state 19
+    entrada                        shift and go to state 20
+    salida                         shift and go to state 21
+    asignacion                     shift and go to state 22
+    incremento                     shift and go to state 23
+    decremento                     shift and go to state 24
+
+state 108
+
+    (32) seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .
+
+    IF              reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    WHILE           reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    DO              reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    CIN             reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    COUT            reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    IDENTIFICADOR   reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    RBRACE          reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    COMENTARIO      reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    INT             reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    DOUBLE          reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    INTEGER         reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    REAL            reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    UNTIL           reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    END             reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+    ELSE            reduce using rule 32 (seleccion -> IF expresion THEN lista_sentencias ELSE lista_sentencias END .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for COMENTARIO in state 3 resolved as shift
+WARNING: shift/reduce conflict for INT in state 3 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 3 resolved as shift
+WARNING: shift/reduce conflict for INTEGER in state 3 resolved as shift
+WARNING: shift/reduce conflict for REAL in state 3 resolved as shift
+WARNING: shift/reduce conflict for IF in state 3 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 3 resolved as shift
+WARNING: shift/reduce conflict for DO in state 3 resolved as shift
+WARNING: shift/reduce conflict for CIN in state 3 resolved as shift
+WARNING: shift/reduce conflict for COUT in state 3 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFICADOR in state 3 resolved as shift
+WARNING: shift/reduce conflict for RBRACE in state 4 resolved as shift
+WARNING: shift/reduce conflict for COMENTARIO in state 4 resolved as shift
+WARNING: shift/reduce conflict for INT in state 4 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 4 resolved as shift
+WARNING: shift/reduce conflict for INTEGER in state 4 resolved as shift
+WARNING: shift/reduce conflict for REAL in state 4 resolved as shift
+WARNING: shift/reduce conflict for IF in state 4 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 4 resolved as shift
+WARNING: shift/reduce conflict for DO in state 4 resolved as shift
+WARNING: shift/reduce conflict for CIN in state 4 resolved as shift
+WARNING: shift/reduce conflict for COUT in state 4 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFICADOR in state 4 resolved as shift
+WARNING: shift/reduce conflict for IF in state 7 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 7 resolved as shift
+WARNING: shift/reduce conflict for DO in state 7 resolved as shift
+WARNING: shift/reduce conflict for CIN in state 7 resolved as shift
+WARNING: shift/reduce conflict for COUT in state 7 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFICADOR in state 7 resolved as shift
+WARNING: shift/reduce conflict for IF in state 27 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 27 resolved as shift
+WARNING: shift/reduce conflict for DO in state 27 resolved as shift
+WARNING: shift/reduce conflict for CIN in state 27 resolved as shift
+WARNING: shift/reduce conflict for COUT in state 27 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFICADOR in state 27 resolved as shift
+WARNING: shift/reduce conflict for AND in state 37 resolved as shift
+WARNING: shift/reduce conflict for OR in state 37 resolved as shift
+WARNING: shift/reduce conflict for IF in state 55 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 55 resolved as shift
+WARNING: shift/reduce conflict for DO in state 55 resolved as shift
+WARNING: shift/reduce conflict for CIN in state 55 resolved as shift
+WARNING: shift/reduce conflict for COUT in state 55 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFICADOR in state 55 resolved as shift
+WARNING: shift/reduce conflict for IF in state 78 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 78 resolved as shift
+WARNING: shift/reduce conflict for DO in state 78 resolved as shift
+WARNING: shift/reduce conflict for CIN in state 78 resolved as shift
+WARNING: shift/reduce conflict for COUT in state 78 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFICADOR in state 78 resolved as shift
+WARNING: shift/reduce conflict for AND in state 89 resolved as shift
+WARNING: shift/reduce conflict for OR in state 89 resolved as shift
+WARNING: shift/reduce conflict for AND in state 90 resolved as shift
+WARNING: shift/reduce conflict for OR in state 90 resolved as shift
+WARNING: shift/reduce conflict for IF in state 102 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 102 resolved as shift
+WARNING: shift/reduce conflict for DO in state 102 resolved as shift
+WARNING: shift/reduce conflict for CIN in state 102 resolved as shift
+WARNING: shift/reduce conflict for COUT in state 102 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFICADOR in state 102 resolved as shift
