@@ -642,11 +642,27 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tabsintacticobien">
+
+           <widget class="QWidget" name="tabsintacticobien">
       <attribute name="title">
-       <string>Sintactico</string>
+       <string>Sintáctico</string>
       </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QTreeView" name="txtSintacticobien">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+background-color: rgb(214, 212, 251);
+border-color: rgb(238, 238, 238);</string>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
+     
      <widget class="QWidget" name="tabSintactico">
       <attribute name="title">
        <string>Semantico</string>

@@ -34,6 +34,8 @@ from seman import (
     symbol_table,
 )
 
+from sint import parser2, set_error_output, get_sintactic_errors
+
 
 class NoScrollTextEdit(QTextEdit):
     def __init__(self, parent=None):
@@ -379,6 +381,7 @@ class Main(QMainWindow):
         self.txtErroresSintactico.appendPlainText("\n".join(sintactic_errors))
 
         self.show_syntax_tree(result)
+        self.show_syntax_treebien(result)
         self.show_symbol_table()  # Cambiado a no pasar argumentos
 
 
@@ -416,6 +419,27 @@ class Main(QMainWindow):
         tree_view.header().setSectionResizeMode(
             QHeaderView.ResizeToContents
         )  # Ajustar el tamaño de las secciones según el contenido
+
+
+    def show_syntax_treebien(self, tree):
+        tree_view = self.tabCompilacion.findChild(QWidget, "tabsintacticobien").findChild(
+            QTreeView, "txtSintacticobien"
+        )
+        model = QStandardItemModel()
+        model.setHorizontalHeaderLabels(['Árbol Sintáctico'])
+
+        root_item = self.add_items2(tree)
+        model.appendRow(root_item)
+
+        tree_view.setModel(model)
+        tree_view.expandAll()
+
+        # Formato adicional para QTreeView
+        #tree_view.setAlternatingRowColors(True)  # Colores alternados en las filas
+        #tree_view.setStyleSheet("QTreeView { alternate-background-color: #f0f0f0; }")  # Color de fondo alternado
+        tree_view.header().setDefaultAlignment(Qt.AlignCenter)  # Alineación centrada de los encabezados
+        tree_view.header().setStretchLastSection(True)  # Extender la última sección para ocupar todo el espacio disponible
+        tree_view.header().setSectionResizeMode(QHeaderView.ResizeToContents)  # Ajustar el tamaño de las secciones según el contenido
 
     def show_symbol_table(self):
         # Encuentra el QTreeView en la pestaña de Tabla de Símbolos
@@ -455,6 +479,26 @@ class Main(QMainWindow):
         tabla_simbolos_view.header().setSectionResizeMode(QHeaderView.ResizeToContents)
 
 
+    def add_items2(self, element):
+        if element is None:  # Si el elemento es None, no lo añadimos al árbol
+            return None
+
+        if isinstance(element, tuple):
+            item = QStandardItem(str(element[0]))
+            for child in element[1:]:
+                child_item = self.add_items2(child)
+                if child_item is not None:  # Solo añadimos el hijo si no es None
+                    item.appendRow(child_item)
+        elif isinstance(element, list):
+            item = QStandardItem("lista_declaraciones")
+            for subelement in element:
+                subitem = self.add_items2(subelement)
+                if subitem is not None:  # Solo añadimos el subelemento si no es None
+                    item.appendRow(subitem)
+        else:
+            item = QStandardItem(str(element))
+        return item
+    
     def add_items(self, element):
         if element is None:
             return None

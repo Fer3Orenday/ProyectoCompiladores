@@ -355,13 +355,11 @@ def set_error_output(output_widget):
 def get_sintactic_errors():
     return errores_sintacticos
 
-
 def get_symbol_info(name):
     """Busca en la tabla de símbolos y devuelve un string con el nombre, tipo y valor de la variable."""
     for symbol in symbol_table:
         if symbol["name"] == name:
             return f"{symbol['name']} (tipo: {symbol['tipo']}, valor: {symbol['valor'] if symbol['valor'] is not None else 'none'})"
     return None
-
 
 parser = yacc.yacc(errorlog=yacc.NullLogger())
